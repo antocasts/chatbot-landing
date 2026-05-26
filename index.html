@@ -293,6 +293,13 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Esigenze</label>
                     <textarea name="message" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" rows="3" placeholder="Parlaci del tuo caso d'uso..."></textarea>
                 </div>
+
+                <!-- Protezione Spam: Cloudflare Turnstile -->
+                <div class="mb-6 flex justify-center">
+                    <!-- Sostituisci la Site Key "1x00000000000000000000AA" (chiave di test di Cloudflare sempre valida) con la tua chiave reale -->
+                    <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
+                </div>
+
                 <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
                     Richiedi Preventivo
                 </button>
@@ -310,6 +317,9 @@
             <p class="text-sm">© 2026. Tutti i diritti riservati. Prodotto Enterprise-Grade.</p>
         </div>
     </footer>
+
+    <!-- Script Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 </body>
 </html>
