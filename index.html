@@ -1,316 +1,1689 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piattaforma AI Privata | Sicurezza e Intelligenza On-Premise</title>
+    <title>PrivateChatbot | Intelligenza Artificiale On-Premise Sicura ed Enterprise</title>
+    <meta name="description" content="La piattaforma AI privata B2B per addestrare chatbot sui tuoi documenti aziendali riservati senza inviare dati al cloud. Conforme a GDPR e NIS2.">
+    
+    <!-- Tailwind CSS & Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .glass-navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
-        .dashboard-tilt {
-            transform: perspective(2000px) rotateX(5deg) rotateY(-5deg) rotateZ(1deg);
-            box-shadow: 
-                -20px 20px 60px rgba(0, 0, 0, 0.2),
-                0 0 40px rgba(79, 70, 229, 0.2);
-            transition: all 0.5s ease;
+        .hero-glow {
+            background: radial-gradient(120% 120% at 50% 0%, rgba(59, 130, 246, 0.08) 0%, rgba(99, 102, 241, 0.04) 50%, rgba(255, 255, 255, 0) 100%), linear-gradient(to bottom right, #f0f4ff, #f5f3ff, #ffffff);
         }
-        .dashboard-tilt:hover {
-            transform: perspective(2000px) rotateX(2deg) rotateY(-2deg) rotateZ(0deg);
-            box-shadow: 
-                -10px 10px 40px rgba(0, 0, 0, 0.15),
-                0 0 60px rgba(79, 70, 229, 0.3);
+        .premium-card {
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .gloss-effect::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%);
-            pointer-events: none;
+        .premium-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.12);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .active-tab {
+            background: rgba(59, 130, 246, 0.08);
+            color: #1d4ed8;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 20px 3px rgba(59, 130, 246, 0.25);
+        }
+        .reveal-fade-in {
+            animation: fadeIn ease 1s;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+            transition: transform 0.1s;
+        }
+        .custom-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+        details summary::-webkit-details-marker {
+            display: none;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased selection:bg-blue-200">
+<body class="bg-gray-50 text-gray-700 font-sans antialiased selection:bg-blue-100">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-panel shadow-sm">
+    <nav class="fixed w-full z-50 glass-navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center space-x-2">
-                    <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
-                        AI
+                <div class="flex-shrink-0 flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-display font-extrabold text-2xl shadow-lg shadow-blue-500/20">
+                        P
                     </div>
-                    <span class="font-bold text-xl tracking-tight text-gray-900">PrivateChatbot</span>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-xl tracking-tight text-gray-900 leading-none">PrivateChatbot</span>
+                        <span class="text-[9px] uppercase tracking-widest text-blue-600 font-bold mt-1">Enterprise AI</span>
+                    </div>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#features" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Caratteristiche</a>
-                    <a href="#security" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Sicurezza</a>
-                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Richiedi Preventivo</a>
+                    <a href="#architecture" class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors">Architettura</a>
+                    <a href="#features" class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors">Funzionalità</a>
+                    <a href="#specs" class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors">Specifiche</a>
+                    <a href="#calculator" class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors">Calcola ROI</a>
+                    <a href="#faq" class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors">FAQ</a>
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full font-medium text-sm transition-all shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-0.5">
+                        Richiedi Demo
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 bg-gradient-to-br from-blue-50 to-indigo-50 relative overflow-hidden">
-        <div class="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 rounded-full bg-indigo-100 opacity-50 blur-3xl"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm mb-6 tracking-wide uppercase">AI 100% On-Premise</span>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 tracking-tight leading-tight mb-8">
-                L'Intelligenza Artificiale che <br class="hidden md:block"/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">non esce dalla tua azienda.</span>
-            </h1>
-            <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
-                Addestra un chatbot sui tuoi documenti aziendali riservati senza inviare un singolo byte al cloud. Progettato per GDPR, NIS2 e dati sensibili.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-700 transition shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                    Contattaci per un preventivo
-                </a>
-                <a href="#features" class="px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-full font-bold text-lg hover:bg-gray-50 transition shadow-sm">
-                    Scopri come funziona
-                </a>
-            </div>
-
-            <!-- Mockup Preview -->
-            <div class="mt-24 relative mx-auto max-w-5xl">
-                <!-- Decorative glow behind -->
-                <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl opacity-20 blur-2xl"></div>
+    <section class="relative pt-36 pb-24 lg:pt-48 lg:pb-36 overflow-hidden hero-glow">
+        <!-- Background decorative blobs -->
+        <div class="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 rounded-full bg-blue-600/5 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-40 -mb-40 w-96 h-96 rounded-full bg-indigo-600/5 blur-3xl pointer-events-none"></div>
+ 
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center space-x-2 py-1.5 px-4 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-semibold text-xs mb-8 tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                    <span>100% On-Premise & Air-Gapped Ready</span>
+                </div>
                 
-                <div class="dashboard-tilt relative rounded-xl bg-white border border-gray-100 p-1.5 overflow-hidden">
-                    <div class="bg-gray-100 rounded-t-lg px-4 py-2.5 flex items-center justify-between border-b border-gray-200">
-                        <div class="flex items-center space-x-1.5">
-                            <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
-                            <div class="ml-4 text-[10px] uppercase tracking-widest text-gray-400 font-bold font-sans">Enterprise Admin Console</div>
-                        </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-gray-900 tracking-tight leading-[1.15] mb-8">
+                    L'Intelligenza Artificiale Generativa <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                        che non esce mai dalla tua azienda.
+                    </span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Addestra modelli linguistici avanzati (RAG) sui tuoi documenti aziendali riservati senza inviare un singolo byte al cloud. Progettato per conformità <strong class="text-gray-950 font-semibold">GDPR</strong>, <strong class="text-gray-950 font-semibold">NIS2</strong> e ambienti ad alta sicurezza.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-base transition shadow-lg shadow-blue-500/25 hover:shadow-blue-500/35 transform hover:-translate-y-0.5 text-center">
+                        Contattaci per un Preventivo
+                    </a>
+                    <a href="#architecture" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 rounded-full font-bold text-base transition border border-gray-200 text-center">
+                        Come Funziona
+                    </a>
+                </div>
+            </div>
+ 
+            <!-- Premium Video/Mockup Section -->
+            <div class="mt-8 relative mx-auto max-w-5xl">
+                <!-- Decorative ambient glow behind card -->
+                <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl opacity-15 blur-2xl pointer-events-none"></div>
+                
+                <!-- Windows/Mac Style Mockup Container -->
+                <div class="relative rounded-2xl bg-white border border-gray-200/80 p-1 shadow-2xl overflow-hidden">
+                    <div class="bg-gray-50 rounded-t-xl px-4 py-3.5 flex items-center justify-between border-b border-gray-200">
                         <div class="flex items-center space-x-2">
-                            <span class="text-[10px] font-bold text-indigo-500 uppercase tracking-tighter bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">Live Demo</span>
+                            <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
+                            <span class="ml-4 text-[10px] uppercase tracking-widest text-gray-400 font-bold font-mono">Enterprise Console v2.0</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Servizi Locali Attivi</span>
                         </div>
                     </div>
                     
-                    <div class="relative gloss-effect aspect-video overflow-hidden border-t border-gray-100 bg-gray-900">
-                        <!-- We use the animated WEBP demo here -->
-                        <img src="demo.webp" alt="Demo Video Tour - PrivateChatbot AI" class="w-full h-full object-cover">
+                    <!-- Content Container -->
+                    <div class="relative aspect-video w-full overflow-hidden bg-gray-900 flex items-center justify-center">
+                        <!-- Playable WebP Animato / Video Mockup -->
+                        <img src="demo.webp" alt="PrivateChatbot Demo Console" class="w-full h-full object-cover select-none">
                         
-                        <!-- Overlay for a more "pro" look -->
-                        <div class="absolute inset-0 pointer-events-none border-[12px] border-transparent shadow-[inset_0_0_100px_rgba(0,0,0,0.2)]"></div>
+                        <!-- Premium Inner Shadow Overlay -->
+                        <div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_80px_rgba(0,0,0,0.5)]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Trust / Compliance Bar -->
+    <section class="py-10 bg-white border-y border-gray-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Requisiti di Sicurezza Soddisfatti:</span>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 items-center text-gray-500 font-semibold text-sm">
+                    <!-- GDPR -->
+                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
+                        <span class="text-blue-500 text-lg">🛡️</span>
+                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">GDPR Compliant</span>
+                        <!-- Tooltip -->
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
+                                <span>🛡️</span> <span>Conformità GDPR Nativa</span>
+                            </div>
+                            Tutti i dati personali e i documenti aziendali rimangono residenti nella tua infrastruttura legale in territorio UE. Nessun trasferimento di dati extra-UE o esposizione a terze parti cloud.
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- NIS2 -->
+                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
+                        <span class="text-blue-500 text-lg">🚀</span>
+                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">NIS2 Ready</span>
+                        <!-- Tooltip -->
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
+                                <span>🚀</span> <span>Direttiva Europea NIS2</span>
+                            </div>
+                            Soddisfa i requisiti di sicurezza informatica dell'Articolo 21 tramite registri di auditing amministrativo immutabili, controllo degli accessi granulare e isolamento logico.
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- ISO 27001 -->
+                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
+                        <span class="text-blue-500 text-lg">🔒</span>
+                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">ISO 27001 Align</span>
+                        <!-- Tooltip -->
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
+                                <span>🔒</span> <span>Allineamento ISO 27001</span>
+                            </div>
+                            Architettura solida basata sui principi di riservatezza e integrità: separazione logica multi-tenant, crittografia a riposo/in transito e hashing di sicurezza SHA-256 delle credenziali.
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- Air-Gapped -->
+                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
+                        <span class="text-blue-500 text-lg">🔌</span>
+                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">100% Air-Gapped</span>
+                        <!-- Tooltip -->
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
+                                <span>🔌</span> <span>Isolamento Totale (Air-Gap)</span>
+                            </div>
+                            Il sistema può operare interamente disconnesso dalla rete Internet. Sia i pesi dei modelli (LLM) sia il database vettoriale sono installati in locale sui tuoi server privati.
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats & Trust Bar -->
-    <section class="py-12 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <div class="flex items-center space-x-2"><span class="font-bold text-xl">FINANCE</span><span class="text-xs uppercase">Certified</span></div>
-                <div class="flex items-center space-x-2"><span class="font-bold text-xl">GOV</span><span class="text-xs uppercase">Secured</span></div>
-                <div class="flex items-center space-x-2"><span class="font-bold text-xl">GDPR</span><span class="text-xs uppercase">Compliant</span></div>
-                <div class="flex items-center space-x-2"><span class="font-bold text-xl">ISO</span><span class="text-xs uppercase">Ready</span></div>
+    <!-- Pure CSS Architecture Section -->
+    <section id="architecture" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Trasparenza Totale</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2">Come i tuoi dati rimangono isolati in azienda</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Nessuna chiamata a server esterni, nessuna esposizione API. PrivateChatbot gira interamente dentro la tua rete aziendale sicura.
+                </p>
+            </div>
+
+            <!-- CSS Flow Chart Diagram -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Step 1 -->
+                <div class="premium-card p-6 rounded-2xl text-center relative">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-blue-100">
+                        1
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Ingestion Dati</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        PDF, DOCX, XLSX e CSV vengono inseriti tramite interfaccia o API. I dati vengono convertiti e segmentati in capitoli e paragrafi.
+                    </p>
+                    <div class="hidden md:block absolute top-1/2 -right-4 -translate-y-1/2 z-20 text-blue-600 font-bold text-xl animate-pulse">➔</div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="premium-card p-6 rounded-2xl text-center relative">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-blue-100">
+                        2
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Chroma Vector DB</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        I testi vengono convertiti in vettori matematici (embeddings) e memorizzati localmente. Questo consente la ricerca semantica ultrarapida delle fonti.
+                    </p>
+                    <div class="hidden md:block absolute top-1/2 -right-4 -translate-y-1/2 z-20 text-blue-600 font-bold text-xl animate-pulse">➔</div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="premium-card p-6 rounded-2xl text-center relative">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-blue-100">
+                        3
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">LLM Locale (Ollama)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Modelli del calibro di Llama 3 o Mistral estraggono la risposta esclusivamente dai documenti vettoriali, azzerando le allucinazioni.
+                    </p>
+                    <div class="hidden md:block absolute top-1/2 -right-4 -translate-y-1/2 z-20 text-blue-600 font-bold text-xl animate-pulse">➔</div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="premium-card p-6 rounded-2xl text-center">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl mx-auto mb-4 border border-emerald-100">
+                        ✓
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Risposta Sicura</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        La risposta finale viene inviata all'utente indicando le fonti esatte dei tuoi documenti, con streaming ultra fluido SSE e crittografia di rete.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Deep Dive Analytics Screenshot Section -->
-    <section class="py-24 bg-gray-50 overflow-hidden">
+    <!-- Deep-Dive Features Grid -->
+    <section id="features" class="py-24 bg-gray-50 relative border-t border-gray-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Massime Prestazioni</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2">Funzionalità di Grado Militare per la tua Azienda</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="premium-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100 font-semibold text-lg">
+                        📑
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">RAG con Citazione Fonti</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Il chatbot non inventa nulla. Cerca ed estrae frammenti pertinenti dai tuoi manuali o contratti e ti risponde citando file, pagina e paragrafo esatto come fonte.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="premium-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100 font-semibold text-lg">
+                        🏢
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Isolamento Multi-Tenant</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Gestisci dipartimenti aziendali o clienti differenti in modo isolato. Ogni "Tenant" ha la propria base documentale protetta, prompt e limiti di richieste dedicati.
+                 <!-- Feature 3 -->
+                <div class="premium-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100 font-semibold text-lg">
+                        🔄
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ingestion Folder Monitor</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Il sistema monitora le cartelle condivise o l'archiviazione locale, re-indicizzando automaticamente i documenti non appena vengono inseriti o modificati dal tuo team.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Formati Documenti Ingestion -->
+            <div class="mt-16 premium-card p-8 rounded-2xl border border-gray-200/60">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Ampio Supporto Formati Documento</h4>
+                        <p class="text-gray-600 text-sm">Estrae ed elabora testi in modo nativo da file strutturati e non strutturati.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="px-4 py-2 rounded-lg bg-red-50 text-red-600 border border-red-100 font-mono text-xs font-bold">.PDF</span>
+                        <span class="px-4 py-2 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 font-mono text-xs font-bold">.DOCX</span>
+                        <span class="px-4 py-2 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100 font-mono text-xs font-bold">.XLSX</span>
+                        <span class="px-4 py-2 rounded-lg bg-yellow-50 text-yellow-600 border border-yellow-100 font-mono text-xs font-bold">.CSV</span>
+                        <span class="px-4 py-2 rounded-lg bg-purple-50 text-purple-600 border border-purple-100 font-mono text-xs font-bold">.TXT</span>
+                        <span class="px-4 py-2 rounded-lg bg-orange-50 text-orange-600 border border-orange-100 font-mono text-xs font-bold">.MD</span>
+                        <span class="px-4 py-2 rounded-lg bg-teal-50 text-teal-600 border border-teal-100 font-mono text-xs font-bold">.HTML</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connettori & Integrazioni Secure (Grid) -->
+            <div class="mt-8 premium-card p-8 rounded-2xl border border-gray-200/60">
+                <h4 class="text-xl font-bold text-gray-900 mb-2">Connettori ed Integrazioni Sicure</h4>
+                <p class="text-gray-600 text-sm mb-6">Sincronizza automaticamente le basi di conoscenza dai tuoi strumenti aziendali senza esporli all'esterno.</p>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <!-- SharePoint -->
+                    <button onclick="selectIntegration('sharepoint')" id="int-sharepoint" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group active-tab shadow-sm">
+                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">📂</span>
+                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">SharePoint</span>
+                    </button>
+                    <!-- Google Drive -->
+                    <button onclick="selectIntegration('gdrive')" id="int-gdrive" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
+                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">🤖</span>
+                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Google Drive</span>
+                    </button>
+                    <!-- Confluence -->
+                    <button onclick="selectIntegration('confluence')" id="int-confluence" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
+                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">📄</span>
+                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Confluence</span>
+                    </button>
+                    <!-- Slack -->
+                    <button onclick="selectIntegration('slack')" id="int-slack" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
+                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">💬</span>
+                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Slack</span>
+                    </button>
+                    <!-- MS Teams -->
+                    <button onclick="selectIntegration('teams')" id="int-teams" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
+                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">👥</span>
+                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">MS Teams</span>
+                    </button>
+                    <!-- Samba/NFS -->
+                    <button onclick="selectIntegration('samba')" id="int-samba" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
+                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">🖥️</span>
+                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Samba / NFS</span>
+                    </button>
+                </div>
+                
+                <!-- Display Area for Selected Integration Details -->
+                <div class="mt-6 p-4 rounded-xl bg-gray-50 border border-gray-200/60 text-xs text-gray-600 font-sans leading-relaxed transition-all duration-300">
+                    <div id="integration-details" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="flex-1 text-left">
+                            <span class="font-bold text-gray-900 text-sm block mb-1" id="integration-title">📂 Connettore SharePoint Enterprise</span>
+                            <span id="integration-desc">Sincronizza intere librerie di documenti di dipartimento tramite API locali sicure e proxy aziendali. Mantiene allineati i permessi di accesso ACL (Access Control List) in linea con Active Directory.</span>
+                        </div>
+                        <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100 align-middle self-start sm:self-center">✓ 100% Sicuro Localmente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive Analytics Section -->
+    <section class="py-24 bg-white overflow-hidden border-t border-gray-200/60 reveal-fade-in">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/3">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Controllo Totale <br/>sulle Performance.</h2>
-                    <p class="text-lg text-gray-600 mb-8">
-                        Monitora l'utilizzo dei token, il risparmio stimato rispetto ai servizi cloud e il feedback degli utenti in tempo reale da un'unica console centralizzata.
+                <!-- Text Column -->
+                <div class="lg:w-1/3 text-left">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Controllo Totale</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2 mb-6">Monitoraggio & Performance Real-Time</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-8">
+                        Tieni sotto controllo l'utilizzo dei token, le performance locali, il risparmio stimato rispetto ai servizi cloud di terze parti e il gradimento delle risposte fornito dagli utenti aziendali.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">✓</div>
-                            <span class="text-gray-700">Analisi costi vs Cloud (OpenAI/Azure)</span>
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-100">✓</div>
+                            <span class="text-sm text-gray-700">Analisi costi stimati vs Cloud API (OpenAI/Azure)</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">✓</div>
-                            <span class="text-gray-700">Tracciamento latenza millimetrico</span>
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-100">✓</div>
+                            <span class="text-sm text-gray-700">Tracciamento millimetrico dei tempi di latenza</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">✓</div>
-                            <span class="text-gray-700">Top Tenant per volume di traffico</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:w-2/3 relative">
-                    <div class="absolute -right-20 top-1/2 -translate-y-1/2 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
-                    <div class="relative rounded-2xl shadow-2xl border border-gray-200 overflow-hidden transform lg:rotate-2 hover:rotate-0 transition-transform duration-700">
-                        <img src="dashboard-real.png" alt="Analytics Dashboard" class="w-full h-auto">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Progettato per l'Enterprise</h2>
-                <p class="text-xl text-gray-600">Architettura solida, API headless e gestione multi-tenant.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Feature 1 -->
-                <div class="p-8 rounded-2xl bg-blue-50 border border-blue-100 transition hover:shadow-lg">
-                    <div class="w-14 h-14 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Privacy Assoluta</h3>
-                    <p class="text-gray-600 leading-relaxed">Nessuna API di OpenAI. Il modello linguistico (LLM) gira sui tuoi server. Dati finanziari, HR e legali rimangono sempre entro il perimetro aziendale.</p>
-                </div>
-                <!-- Feature 2 -->
-                <div class="p-8 rounded-2xl bg-blue-50 border border-blue-100 transition hover:shadow-lg">
-                    <div class="w-14 h-14 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">RAG Pipeline</h3>
-                    <p class="text-gray-600 leading-relaxed">Carica PDF, Word ed Excel. Il sistema estrae, indicizza e usa i tuoi documenti come contesto per risposte precise, fornendo le fonti esatte.</p>
-                </div>
-                <!-- Feature 3 -->
-                <div class="p-8 rounded-2xl bg-blue-50 border border-blue-100 transition hover:shadow-lg">
-                    <div class="w-14 h-14 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Multi-Tenant</h3>
-                    <p class="text-gray-600 leading-relaxed">Isolamento rigoroso dei dati. Crea "Tenant" illimitati per vari dipartimenti o clienti, gestendo limiti di rate e token separatamente.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- UI/UX Section -->
-    <section class="py-24 bg-gray-50 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Integrabile ovunque, <br/>in 2 minuti.</h2>
-                    <p class="text-xl text-gray-600 mb-8">Non sei vincolato a una singola interfaccia. Hai a disposizione un widget JavaScript pronto all'uso e API Headless complete per creare la tua esperienza.</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="ml-3 text-lg text-gray-700"><strong>Widget Embeddabile:</strong> Inserisci un tag <code>&lt;script&gt;</code> e avrai la chat sul tuo sito.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="ml-3 text-lg text-gray-700"><strong>White-Label:</strong> Personalizza logo, nome e colore primario dal pannello Admin.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="ml-3 text-lg text-gray-700"><strong>REST API complete:</strong> Streaming SSE per risposte fluide tipo ChatGPT.</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lg:w-1/2 w-full">
-                    <!-- Widget Mockup -->
-                    <div class="max-w-sm mx-auto bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col h-96 transform rotate-2 hover:rotate-0 transition duration-300">
-                        <div class="bg-blue-600 px-4 py-3 flex items-center">
-                            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-xs">AI</div>
-                            <span class="ml-3 text-white font-medium">Assistente Aziendale</span>
-                        </div>
-                        <div class="p-4 flex-1 bg-gray-50 flex flex-col justify-end space-y-3">
-                            <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-gray-700 self-start max-w-[85%]">
-                                Ciao! Ho letto il manuale "HR_Policy_2026.pdf". Come posso aiutarti?
-                            </div>
-                            <div class="bg-blue-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm self-end max-w-[85%]">
-                                Quanti giorni di ferie ho a disposizione?
-                            </div>
-                            <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm text-sm text-gray-700 self-start max-w-[85%] border-l-2 border-blue-500">
-                                Secondo il manuale (Pag. 12), i dipendenti full-time hanno diritto a 26 giorni di ferie annue.
-                            </div>
-                        </div>
-                        <div class="p-3 bg-white border-t border-gray-100 flex items-center text-gray-400">
-                            <div class="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm">Scrivi un messaggio...</div>
-                        </div>
+                            <div class="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-100">✓</div>
+                            <span class="text-sm text-gray-700">Top Tenant ordinati per volume di traffico</span>
+                                <!-- Image Column -->
+                <div class="lg:w-2/3 relative w-full">
+                    <!-- Glow decoration -->
+                    <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl opacity-15 blur-2xl pointer-events-none"></div>
+                    
+                    <div class="relative rounded-2xl border border-gray-200/85 bg-white p-1.5 shadow-2xl overflow-hidden transform lg:rotate-1 hover:rotate-0 transition-all duration-500">
+                        <img src="dashboard-real.png" alt="Analytics Dashboard" class="w-full h-auto rounded-xl">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Security & Compliance -->
-    <section id="security" class="py-24 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">GDPR & Compliance out-of-the-box</h2>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-16">Audit log immutabili, cancellazione selettiva dei documenti e ritenzione automatizzata. Pensato per passare i penetration test aziendali.</p>
+    <!-- Industry Use Cases Section -->
+    <section id="use-cases" class="py-24 bg-gray-50 relative overflow-hidden border-t border-gray-200/60 reveal-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-800 pt-16">
-                <div>
-                    <h4 class="text-4xl font-bold text-blue-500 mb-2">100%</h4>
-                    <p class="text-gray-400">Codice Sorgente Auditabile</p>
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">In Pratica</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2">Come le Aziende utilizzano PrivateChatbot</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Soluzioni flessibili per incrementare l'efficienza dei reparti mantenendo il controllo assoluto sui dati interni.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Case 1 -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-3xl mb-4">👥</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Risorse Umane & Onboarding</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            I dipendenti interrogano direttamente i regolamenti interni, le procedure di sicurezza e la policy aziendale per trovare risposte istantanee su ferie, permessi e tutele.
+                        </p>
+                    </div>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-wide bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 self-start">HR & Employee Support</span>
                 </div>
-                <div>
-                    <h4 class="text-4xl font-bold text-blue-500 mb-2">Zero</h4>
-                    <p class="text-gray-400">Chiamate a Server Esterni</p>
+
+                <!-- Case 2 -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-3xl mb-4">⚖️</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Ufficio Legale & Contratti</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            Analisi e ricerca semantica immediata su contratti commerciali, bandi di gara complessi e normative vigenti, con indicazione millimetrica della clausola di origine.
+                        </p>
+                    </div>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-wide bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 self-start">Legal & Compliance</span>
                 </div>
-                <div>
-                    <h4 class="text-4xl font-bold text-blue-500 mb-2">HMAC</h4>
-                    <p class="text-gray-400">Webhooks Firmati</p>
-                </div>
-                <div>
-                    <h4 class="text-4xl font-bold text-blue-500 mb-2">SSO</h4>
-                    <p class="text-gray-400">Integrazione Keycloak / AD</p>
+
+                <!-- Case 3 -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-3xl mb-4">🛠️</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Supporto Tecnico & Helpdesk</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            Fornisce assistenza tecnica automatica agli operatori o ai clienti finali addestrandosi sui manuali di manutenzione, senza rischio di diffondere file proprietari.
+                        </p>
+                    </div>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-wide bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 self-start">Customer Operations</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact CTA -->
-    <section id="contact" class="py-24 bg-blue-600">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Pronto ad avere il controllo della tua AI?</h2>
-            <p class="text-xl text-blue-100 mb-10 leading-relaxed">
-                Offriamo licenze perpetue per l'installazione On-Premise, con supporto per il setup sui tuoi server o su cloud privato AWS/Azure.
+    <!-- Interactive Chat Widget Simulator (Mockup) -->
+    <section id="chat-simulator" class="py-24 bg-white relative border-t border-gray-200/60 overflow-hidden reveal-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <!-- Info Column -->
+                <div class="lg:col-span-5 text-left">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Prova il Widget</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2 mb-6">Testa l'esperienza dell'utente finale</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Fai clic su una delle domande preimpostate qui sotto per vedere come risponde l'assistente virtuale. Questa è la stessa identica interfaccia che i tuoi dipendenti o clienti utilizzeranno.
+                    </p>
+
+                    <div class="space-y-3">
+                        <button onclick="simulateChat('q1')" class="w-full text-left px-5 py-4 premium-card rounded-xl text-sm font-bold text-gray-900 hover:text-blue-600 border border-gray-200 hover:border-blue-300 transition flex justify-between items-center group shadow-sm">
+                            <span>🛡️ Come garantite la sicurezza e la privacy?</span>
+                            <span class="text-blue-500 opacity-60 group-hover:opacity-100 transition-opacity">➔</span>
+                        </button>
+                        <button onclick="simulateChat('q2')" class="w-full text-left px-5 py-4 premium-card rounded-xl text-sm font-bold text-gray-900 hover:text-blue-600 border border-gray-200 hover:border-blue-300 transition flex justify-between items-center group shadow-sm">
+                            <span>📂 Quali formati di file posso caricare?</span>
+                            <span class="text-blue-500 opacity-60 group-hover:opacity-100 transition-opacity">➔</span>
+                        </button>
+                        <button onclick="simulateChat('q3')" class="w-full text-left px-5 py-4 premium-card rounded-xl text-sm font-bold text-gray-900 hover:text-blue-600 border border-gray-200 hover:border-blue-300 transition flex justify-between items-center group shadow-sm">
+                            <span>💻 Posso integrarlo sul nostro sito web aziendale?</span>
+                            <span class="text-blue-500 opacity-60 group-hover:opacity-100 transition-opacity">➔</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Widget Simulator Column -->
+                <div class="lg:col-span-7 w-full">
+                    <div class="max-w-md mx-auto bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col h-[400px]">
+                        <!-- Chat Header -->
+                        <div class="bg-blue-600 px-4 py-4 flex items-center justify-between shadow-md">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-xs shadow-md">AI</div>
+                                <div class="ml-3 text-left">
+                                    <div class="text-white font-bold text-xs leading-none">Assistente Aziendale</div>
+                                    <div class="text-[9px] text-blue-100 mt-1 flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse"></span> 100% On-Premise</div>
+                                </div>
+                            </div>
+                            <span class="text-[9px] text-blue-200 font-bold tracking-wide uppercase border border-blue-400/40 px-2 py-0.5 rounded bg-blue-700/50">Widget Demo</span>
+                        </div>
+                        
+                        <!-- Chat Body -->
+                        <div id="chat-simulator-body" class="p-4 flex-1 bg-gray-50 flex flex-col overflow-y-auto space-y-4 font-sans">
+                            <!-- Welcome message bubble -->
+                            <div class="bg-white text-gray-700 p-3 rounded-lg rounded-tl-none border border-gray-200/80 shadow-sm text-sm self-start max-w-[85%] mr-auto text-left">
+                                Ciao! Sono l'assistente virtuale di PrivateChatbot, addestrato sui documenti interni. Fai clic su una delle domande a sinistra per vedere come risponde attingendo esclusivamente dalle fonti del tenant!
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Input Box -->
+                        <div class="p-3 bg-white border-t border-gray-150 flex items-center text-gray-400 text-xs font-mono justify-between">
+                            <div class="flex-1 bg-gray-50 rounded-full px-4 py-2 border border-gray-200 text-gray-400 select-none text-left">Fai clic su una domanda per avviare...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive RAG Chunking & Embedding Visualizer -->
+    <section id="rag-visualizer" class="py-24 bg-gray-50 relative border-t border-gray-200/60 overflow-hidden reveal-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Sotto il Cofano</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2">Come funziona la scomposizione RAG dei documenti</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Sperimenta visivamente come un file di testo viene spezzettato (Chunking), convertito in vettori matematici ed indicizzato localmente per eliminare le allucinazioni dell'AI.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Step 1: Input Document -->
+                <div class="premium-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">Step 1: Caricamento File</span>
+                            <span class="text-[10px] text-gray-400 font-mono">contratto_fornitura.txt</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-3 text-left">Testo del Documento originale</h4>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 text-xs font-mono text-gray-600 leading-relaxed min-h-[160px] text-left">
+                            "Contratto di Fornitura ACME: Il fornitore si impegna a consegnare 100 unità di materiale al prezzo di 500€ per unità, con consegna garantita entro 3 giorni lavorativi..."
+                        </div>
+                    </div>
+                    <button onclick="startChunkingSimulation()" id="btn-start-chunking" class="w-full mt-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold text-xs transition glow-button">
+                        ▶ Spezzetta Documento (Chunking)
+                    </button>
+                </div>
+
+                <!-- Step 2: Chunking -->
+                <div class="premium-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">Step 2: Scomposizione in Chunks</span>
+                            <span id="chunk-count-badge" class="text-[10px] text-gray-400 font-mono hidden">2 Chunks Generati</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-3 text-left">Testo suddiviso in frammenti</h4>
+                        <div id="chunk-output-container" class="bg-white p-4 rounded-xl border border-gray-200 text-xs font-mono text-gray-400 leading-relaxed min-h-[160px] flex flex-col justify-center items-center text-center">
+                            <span>Fai clic sul pulsante dello Step 1 per iniziare la scomposizione in frammenti ottimizzati.</span>
+                        </div>
+                    </div>
+                    <button onclick="startEmbeddingSimulation()" id="btn-start-embedding" disabled class="w-full mt-6 py-2.5 bg-gray-100 border border-gray-200 text-gray-400 rounded-lg font-bold text-xs cursor-not-allowed transition">
+                        Converti in Vettori (Embedding)
+                    </button>
+                </div>
+
+                <!-- Step 3: Vectors & DB Ingestion -->
+                <div class="premium-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-2.5 py-0.5 rounded border border-blue-100">Step 3: Database Vettoriale</span>
+                            <span id="db-status-badge" class="text-[10px] text-gray-400 font-mono hidden">ChromaDB Ingestion</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-3 text-left">Array Vettoriale (Embeddings)</h4>
+                        <div id="vector-output-container" class="bg-white p-4 rounded-xl border border-gray-200 text-xs font-mono text-gray-400 leading-relaxed min-h-[160px] flex flex-col justify-center items-center text-center">
+                            <span>I vettori matematici verranno memorizzati nel database di ricerca semantica locale.</span>
+                        </div>
+                    </div>
+                    <button id="btn-db-ingested" disabled class="w-full mt-6 py-2.5 bg-gray-100 border border-gray-200 text-gray-400 rounded-lg font-bold text-xs cursor-not-allowed text-center">
+                        Indicizzazione completata
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs & API Playground -->
+    <section id="specs" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Specs Info -->
+                <div class="text-left">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Specifiche Tecniche</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2 mb-6">Progettato per integrarsi nell'infrastruttura IT esistente</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Forniamo un'architettura consolidata e headless che si adatta alle esigenze di devops e amministratori di sistema.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold">⚙️</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm">Modelli LLM Supportati</h4>
+                                <p class="text-xs text-gray-600 mt-1">Llama 3 (8B/70B), Mistral (7B), Gemma 2, Phi-3 e qualsiasi modello GGUF supportato da Ollama.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold">🔌</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm">Requisiti Hardware</h4>
+                                <p class="text-xs text-gray-600 mt-1">Esecuzione fluida su CPU standard (min. 16GB RAM) o accelerata tramite GPU Nvidia CUDA (Consigliato RTX 3090/4090 o A100).</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold">📦</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm">Deployment Flessibile</h4>
+                                <p class="text-xs text-gray-600 mt-1">Distribuzione rapida tramite Docker Compose pre-configurato o Kubernetes Helm Charts dedicati.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Playground Mockup -->
+                <div class="rounded-2xl border border-slate-800 bg-[#0d1117] p-6 shadow-2xl overflow-hidden font-mono text-xs">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+                        <div class="flex space-x-2">
+                            <button id="tab-btn-request" onclick="switchApiTab('request')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent transition active-tab">Richiesta (cURL)</button>
+                            <button id="tab-btn-response" onclick="switchApiTab('response')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent text-slate-400 hover:text-white transition">Risposta (JSON)</button>
+                            <button id="tab-btn-terminal" onclick="switchApiTab('terminal')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent text-slate-400 hover:text-white transition">docker-compose</button>
+                        </div>
+                        <span class="text-[10px] text-blue-400 bg-blue-950/80 px-2 py-0.5 rounded border border-blue-900/60 font-bold uppercase">POST API</span>
+                    </div>
+
+                    <!-- Request Tab Content -->
+                    <div id="api-tab-request" class="space-y-2 text-slate-300 text-left">
+                        <p class="text-slate-500">// Richiesta di chat completata in streaming</p>
+                        <p><span class="text-pink-500">curl</span> -X <span class="text-emerald-400">POST</span> <span class="text-yellow-300">"http://localhost:8000/api/v1/chat"</span> \</p>
+                        <p class="pl-4">-H <span class="text-yellow-300">"X-API-Key: sk-1a2b3c..."</span> \</p>
+                        <p class="pl-4">-H <span class="text-yellow-300">"Content-Type: application/json"</span> \</p>
+                        <p class="pl-4">-d '{</p>
+                        <p class="pl-8"><span class="text-indigo-400">"question"</span>: <span class="text-yellow-300">"Quanti giorni di ferie ho?"</span>,</p>
+                        <p class="pl-8"><span class="text-indigo-400">"stream"</span>: <span class="text-emerald-400">true</span></p>
+                        <p class="pl-4">}'</p>
+                    </div>
+
+                    <!-- Response Tab Content (Hidden by default) -->
+                    <div id="api-tab-response" class="space-y-2 text-slate-300 hidden text-left">
+                        <p class="text-slate-500">// Risposta in streaming SSE (Server-Sent Events)</p>
+                        <p><span class="text-emerald-400">data:</span> {</p>
+                        <p class="pl-4"><span class="text-indigo-400">"token"</span>: <span class="text-yellow-300">"Secondo"</span>,</p>
+                        <p class="pl-4"><span class="text-indigo-400">"index"</span>: <span class="text-emerald-400">0</span></p>
+                        <p class="pl-2">}</p>
+                        <p><span class="text-emerald-400">data:</span> {</p>
+                        <p class="pl-4"><span class="text-indigo-400">"token"</span>: <span class="text-yellow-300">" il manuale pag.12..."</span>,</p>
+                        <p class="pl-4"><span class="text-indigo-400">"sources"</span>: [{<span class="text-indigo-400">"file"</span>: <span class="text-yellow-300">"HR_Policy.pdf"</span>, <span class="text-indigo-400">"page"</span>: <span class="text-emerald-400">12</span>}]</p>
+                        <p class="pl-2">}</p>
+                    </div>
+
+                    <!-- Terminal Tab Content (Hidden by default) -->
+                    <div id="api-tab-terminal" class="space-y-2 text-slate-300 hidden text-left">
+                        <p class="text-slate-500"># Avvia lo stack locale con un solo comando</p>
+                        <p><span class="text-blue-400">admin@local-server</span>:<span class="text-indigo-400">~</span>$ docker compose --profile monitoring up -d</p>
+                        <p class="text-slate-500">Creating network "chatbot_net" - OK</p>
+                        <p class="text-slate-500">Creating volume "chatbot_postgres_data" - OK</p>
+                        <div id="terminal-sim-button-container" class="pt-4">
+                            <button onclick="startTerminalSimulation()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2 rounded-lg font-sans text-xs transition">▶ Esegui docker-compose</button>
+                        </div>
+                        <div id="terminal-sim-output" class="space-y-1 font-mono text-[11px] text-slate-400 mt-4 max-h-[160px] overflow-y-auto hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Dashboard Section -->
+            <div id="analytics" class="mt-24 p-8 bg-white rounded-2xl border border-gray-200">
+                <h3 class="text-gray-900 font-bold text-lg mb-6">Dashboard Analitica (Esempio)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200/80">
+                        <div class="text-[10px] text-gray-500 uppercase font-bold">Query Totali</div>
+                        <div class="text-2xl font-bold text-gray-900 mt-1">12.4K</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200/80">
+                        <div class="text-[10px] text-gray-500 uppercase font-bold">Latenza Media</div>
+                        <div class="text-2xl font-bold text-emerald-600 mt-1">142ms</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200/80">
+                        <div class="text-[10px] text-gray-500 uppercase font-bold">Uptime</div>
+                        <div class="text-2xl font-bold text-gray-900 mt-1">99.9%</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200/80">
+                        <div class="text-[10px] text-gray-500 uppercase font-bold">Error Rate</div>
+                        <div class="text-2xl font-bold text-rose-600 mt-1">0.02%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Local Node Status Live Monitoring Dashboard component -->
+            <div class="mt-16 border-t border-gray-200/60 pt-16 reveal-fade-in">
+                <div class="text-center mb-10 max-w-xl mx-auto">
+                    <span class="text-[10px] font-bold text-blue-700 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">Control Console</span>
+                    <h3 class="text-2xl font-display font-bold text-gray-900 mt-4">Stato dei Nodi Locali in Tempo Reale</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Ollama GPU Card -->
+                    <div class="premium-card p-6 rounded-2xl border border-gray-200/85">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-gray-900 flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></span> Ollama LLM Engine</span>
+                            <span class="text-[10px] text-gray-400 font-mono">NODE_01</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1.5 font-bold">
+                                    <span class="text-gray-500">Carico GPU (RTX 4090)</span>
+                                    <span id="stat-gpu-load" class="text-gray-900 font-mono">45 %</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-gpu-load" class="h-full bg-emerald-500 rounded-full transition-all duration-1000" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 pt-2">
+                                <div>
+                                    <div class="text-[10px] text-gray-400 uppercase font-bold">Temp. GPU</div>
+                                    <div id="stat-gpu-temp" class="text-sm font-bold text-gray-900 font-mono mt-0.5">62 °C</div>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-gray-400 uppercase font-bold">VRAM Occupata</div>
+                                    <div class="text-sm font-bold text-gray-900 font-mono mt-0.5">18.4 GB</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ChromaDB Card -->
+                    <div class="premium-card p-6 rounded-2xl border border-gray-200/85">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-gray-900 flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></span> Chroma Vector DB</span>
+                            <span class="text-[10px] text-gray-400 font-mono">NODE_02</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1.5 font-bold">
+                                    <span class="text-gray-500">Stato Indice Vettoriale</span>
+                                    <span class="text-emerald-600 font-bold">Ottimizzato</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-emerald-500 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 pt-2">
+                                <div>
+                                    <div class="text-[10px] text-gray-400 uppercase font-bold">Vettori Indicizzati</div>
+                                    <div class="text-sm font-bold text-gray-900 font-mono mt-0.5">1.480.291</div>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-gray-400 uppercase font-bold">Latenza Query</div>
+                                    <div class="text-sm font-bold text-emerald-600 font-mono mt-0.5">~ 8 ms</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Postgres DB Card -->
+                    <div class="premium-card p-6 rounded-2xl border border-gray-200/85">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold text-gray-900 flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></span> Postgres Database</span>
+                            <span class="text-[10px] text-gray-400 font-mono">NODE_03</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1.5 font-bold">
+                                    <span class="text-gray-500">Connessioni Active Pool</span>
+                                    <span id="stat-pg-connections" class="text-gray-900 font-mono">12 / 100</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="bar-pg-connections" class="h-full bg-blue-500 rounded-full transition-all duration-1000" style="width: 12%"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 pt-2">
+                                <div>
+                                    <div class="text-[10px] text-gray-400 uppercase font-bold">Uso CPU DB</div>
+                                    <div id="stat-pg-cpu" class="text-sm font-bold text-gray-900 font-mono mt-0.5">2.4 %</div>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-gray-400 uppercase font-bold">Transazioni/sec</div>
+                                    <div class="text-sm font-bold text-gray-900 font-mono mt-0.5">148 tps</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security & Performance Comparison Grid -->
+    <section id="comparison" class="py-24 bg-white relative border-t border-gray-200/60 overflow-hidden reveal-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Analisi Comparativa</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2">Perché scegliere l'AI in Locale rispetto al Cloud?</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Un confronto diretto tra l'indipendenza del modello on-premise e i rischi delle soluzioni SaaS esterne.
+                </p>
+            </div>
+
+            <div class="premium-card rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-gray-50 text-gray-900 font-bold border-b border-gray-200">
+                            <tr>
+                                <th class="p-6">Caratteristica</th>
+                                <th class="p-6 text-blue-600">PrivateChatbot (On-Premise)</th>
+                                <th class="p-6 text-gray-500">Cloud AI (OpenAI / Azure)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-gray-650">
+                            <tr class="hover:bg-gray-50/50 transition-colors">
+                                <td class="p-6 font-bold text-gray-900">Residenza e Proprietà dei Dati</td>
+                                <td class="p-6 text-emerald-600 font-semibold">✓ 100% Locale (sui tuoi server fisici o cloud privato)</td>
+                                <td class="p-6 text-gray-500">✗ Elaborati e trasmessi a data center esterni (spesso USA)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50/50 transition-colors">
+                                <td class="p-6 font-bold text-gray-900">Funzionamento Offline (Air-Gap)</td>
+                                <td class="p-6 text-emerald-600 font-semibold">✓ Disponibile (Isolamento totale da Internet)</td>
+                                <td class="p-6 text-gray-500">✗ Impossibile (Connessione H24 obbligatoria)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50/50 transition-colors">
+                                <td class="p-6 font-bold text-gray-900">Struttura dei Costi</td>
+                                <td class="p-6 text-emerald-600 font-semibold">✓ Flat (Canone di licenza fisso, zero costi per token)</td>
+                                <td class="p-6 text-gray-500">✗ Variabile (Costo per ogni singolo token e query)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50/50 transition-colors">
+                                <td class="p-6 font-bold text-gray-900">Conformità Legale (GDPR/NIS2)</td>
+                                <td class="p-6 text-emerald-600 font-semibold">✓ Nativa ed immediata (Nessun trasferimento dati)</td>
+                                <td class="p-6 text-gray-500">✗ Complessa (Richiede complesse DPA e valutazioni dei rischi)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50/50 transition-colors">
+                                <td class="p-6 font-bold text-gray-900">Controllo del Modello & Peso LLM</td>
+                                <td class="p-6 text-emerald-600 font-semibold">✓ Totale (Scegli, alleni e gestisci tu il modello desiderato)</td>
+                                <td class="p-6 text-gray-500">✗ Nessuno (Dipendente da variazioni e deprecazioni del provider)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic B2B ROI Calculator -->
+    <section id="calculator" class="py-24 bg-gray-50 relative border-y border-gray-200/60 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Efficienza Finanziaria</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2">Simula il risparmio rispetto all'AI in Cloud</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Le API esterne addebitano costi ricorrenti per token e storage. Con PrivateChatbot, installato una tantum, i costi operativi sono praticamente azzerati.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+                <!-- Sliders panel -->
+                <div class="lg:col-span-7 premium-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <!-- Slider 1: Requests -->
+                        <div class="mb-8">
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-900 text-sm">Richieste AI mensili (Chat)</label>
+                                <span id="val-requests" class="px-3 py-1 bg-blue-50 text-blue-700 font-mono text-xs font-bold rounded border border-blue-100/60">10.000</span>
+                            </div>
+                            <input type="range" id="input-requests" min="1000" max="100000" step="1000" value="10000" oninput="calculateSavings()" class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer custom-slider">
+                            <div class="flex justify-between text-[10px] text-gray-400 font-bold mt-2">
+                                <span>1.000</span>
+                                <span>50.000</span>
+                                <span>100.000</span>
+                            </div>
+                        </div>
+
+                        <!-- Slider 2: Documents -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="font-bold text-gray-900 text-sm">Documenti da indicizzare (RAG)</label>
+                                <span id="val-documents" class="px-3 py-1 bg-blue-50 text-blue-700 font-mono text-xs font-bold rounded border border-blue-100/60">500</span>
+                            </div>
+                            <input type="range" id="input-documents" min="50" max="5000" step="50" value="500" oninput="calculateSavings()" class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer custom-slider">
+                            <div class="flex justify-between text-[10px] text-gray-400 font-bold mt-2">
+                                <span>50</span>
+                                <span>2.500</span>
+                                <span>5.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-[11px] text-gray-400 leading-relaxed border-t border-gray-200 pt-6">
+                        * Calcolo stimato su una tariffa media Cloud (OpenAI GPT-4o / Azure AI Search) di circa $0,03 per query (inclusi token di input/output e costi di ricerca vettoriale indicizzata) confrontata con l'infrastruttura locale flat.
+                    </div>
+                </div>
+
+                <!-- ROI Results panel -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-white rounded-2xl border border-blue-100/60 p-8 flex flex-col justify-between text-center relative shadow-sm overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-xl pointer-events-none"></div>
+                    
+                    <div>
+                        <span class="text-[10px] font-bold text-blue-700 uppercase tracking-widest bg-blue-100 px-3 py-1 rounded-full border border-blue-200">Risparmio Stimato</span>
+                        
+                        <div class="mt-8">
+                            <div class="text-gray-500 text-xs uppercase tracking-wider font-bold">Risparmio Annuo Totale</div>
+                            <div id="display-annual-savings" class="text-4xl sm:text-5xl font-display font-extrabold text-emerald-600 mt-2 tracking-tight">
+                                € 3.600
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mt-8 border-t border-gray-200/80 pt-6">
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Costo Cloud Stima</div>
+                                <div id="display-cloud-cost" class="text-sm font-bold text-rose-600 font-mono mt-1">€ 300 / mese</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Costo On-Premise</div>
+                                <div class="text-sm font-bold text-emerald-600 font-mono mt-1">€ 0* / query</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="w-full mt-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/20 text-center glow-button">
+                        Richiedi Analisi di Fattibilità
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CISO Lead Magnet Banner -->
+    <section class="py-16 bg-white border-t border-gray-200/60 reveal-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="premium-card p-8 sm:p-12 rounded-3xl border border-gray-200 flex flex-col lg:flex-row justify-between items-center gap-8 relative overflow-hidden">
+                <div class="absolute -right-20 top-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="text-left max-w-2xl relative z-10">
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">IT Resources</span>
+                    <h3 class="text-2xl sm:text-3xl font-display font-bold text-gray-900 mt-4 mb-3">Sei un CISO o IT Manager?</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                        Scarica la nostra **Guida Tecnica di Sicurezza & Checklist NIS2 / GDPR** per scoprire i dettagli su crittografia locale, ritenzione dati e configurazione delle reti isolate (Air-Gapped).
+                    </p>
+                </div>
+                <div class="relative z-10 flex-shrink-0">
+                    <button onclick="openLeadModal()" class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full text-sm sm:text-base transition shadow-lg shadow-blue-500/25 hover:shadow-blue-500/35 transform hover:-translate-y-0.5 glow-button flex items-center space-x-2">
+                        <span>📥 Scarica Guida PDF</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers Section -->
+    <section id="pricing" class="py-24 bg-white relative border-t border-gray-200/60 reveal-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Opzioni di Acquisto</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 mt-2">Piani di Licenza Semplici e Scalabili</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Scegli la formula che meglio si adatta alle dimensioni e ai requisiti di conformità della tua infrastruttura.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Tier 1: Starter -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between border-gray-200">
+                    <div>
+                        <span class="text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100">Starter Plan</span>
+                        <h3 class="text-2xl font-bold font-display text-gray-900 mt-6 mb-2">Single-Tenant</h3>
+                        <p class="text-gray-400 text-xs">Ideale per singoli reparti o piccole aziende.</p>
+                        
+                        <ul class="space-y-4 my-8 text-sm text-gray-600">
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>1 Tenant Dedicato</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>RAG nativa con citazione fonti</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Integrazione Widget in 2 minuti</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Supporto per formati PDF, Word, TXT</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3 bg-white hover:bg-gray-50 text-gray-700 rounded-xl font-bold text-sm transition border border-gray-300 text-center glow-button">
+                        Richiedi Starter
+                    </a>
+                </div>
+
+                <!-- Tier 2: Pro (Featured) -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between border-blue-500/40 relative shadow-md shadow-blue-500/5 bg-gradient-to-b from-blue-50/40 via-white to-white">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 bg-blue-600 text-white text-[10px] uppercase font-bold tracking-widest rounded-full shadow-lg font-display">Consigliato</div>
+                    
+                    <div>
+                        <span class="text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100">Business Plan</span>
+                        <h3 class="text-2xl font-bold font-display text-gray-900 mt-6 mb-2">Multi-Tenant</h3>
+                        <p class="text-gray-400 text-xs">Per aziende con più reparti o agenzie digitali.</p>
+                        
+                        <ul class="space-y-4 my-8 text-sm text-gray-600">
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span class="font-semibold text-gray-900">Fino a 10 Tenant Isolati</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Isolamento dei dati rigoroso per reparti</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>REST API Headless complete</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Ingestion Folder Scheduler automatico</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Supporto formati completi (Excel, CSV, MD)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/25 text-center glow-button">
+                        Richiedi Multi-Tenant
+                    </a>
+                </div>
+
+                <!-- Tier 3: Enterprise -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between border-gray-200">
+                    <div>
+                        <span class="text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100">Custom Plan</span>
+                        <h3 class="text-2xl font-bold font-display text-gray-900 mt-6 mb-2">Enterprise Flat</h3>
+                        <p class="text-gray-400 text-xs">Per grandi infrastrutture e massima conformità.</p>
+                        
+                        <ul class="space-y-4 my-8 text-sm text-gray-600">
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span class="font-semibold text-gray-900">Tenant & Documenti Illimitati</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Funzionamento 100% Air-Gapped / Offline</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Integrazione SSO (Keycloak, AD, OAuth)</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>Log di auditing immutabili pronti per ispezioni</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-blue-600">✓</span>
+                                <span>SLA di supporto prioritario dedicato 24/7</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3 bg-white hover:bg-gray-50 text-gray-700 rounded-xl font-bold text-sm transition border border-gray-300 text-center glow-button">
+                        Contatta un Ingegnere IT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collapsible B2B Accordion FAQs -->
+    <section id="faq" class="py-24 bg-gray-50 relative border-b border-gray-200/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Domande Frequenti</span>
+                <h2 class="text-3xl font-display font-bold text-gray-900 mt-2">Dubbi risolti sulla sicurezza ed installazione</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <details class="premium-card rounded-2xl border border-gray-200 group overflow-hidden" open>
+                    <summary class="flex justify-between items-center p-6 cursor-pointer select-none font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                        <span>Il sistema può funzionare interamente senza accesso ad Internet (Air-Gapped)?</span>
+                        <span class="text-blue-500 font-bold text-lg transition-transform duration-200 group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-150 pt-4">
+                        Sì, assolutamente. PrivateChatbot è progettato appositamente per scenari ad alta sicurezza (difesa, finanza, sanità). Può essere installato in reti isolate (air-gapped) o protette da firewall rigorosi. I pesi dei modelli linguistici vengono pre-caricati sui server durante l'installazione locale.
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="premium-card rounded-2xl border border-gray-200 group overflow-hidden">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer select-none font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                        <span>Quali modelli di intelligenza artificiale consigliate di utilizzare?</span>
+                        <span class="text-blue-500 font-bold text-lg transition-transform duration-200 group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-150 pt-4">
+                        Consigliamo modelli calibrati per la RAG aziendale in base al vostro hardware. Per l'italiano, ottimi risultati si ottengono con **Llama 3 (8B)** o **Mistral (7B)** per server standard. Per query ultra-complesse o contratti legali, suggeriamo modelli a scala maggiore come **Llama 3 (70B)** operanti su hardware dedicato Nvidia.
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="premium-card rounded-2xl border border-gray-200 group overflow-hidden">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer select-none font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                        <span>Come viene gestito l'isolamento dei dati dei vari utenti (Multi-Tenant)?</span>
+                        <span class="text-blue-500 font-bold text-lg transition-transform duration-200 group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-150 pt-4">
+                        La nostra architettura separa fisicamente le collezioni vettoriali del Chroma Vector DB per ciascun Tenant. Un utente autorizzato solo per il dipartimento HR non potrà mai, a livello logico e matematico, interrogare o accedere ai vettori contenenti i documenti dell'Ufficio Legale o dell'Amministrazione.
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="premium-card rounded-2xl border border-gray-200 group overflow-hidden">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer select-none font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                        <span>Come funziona la licenza per l'installazione On-Premise?</span>
+                        <span class="text-blue-500 font-bold text-lg transition-transform duration-200 group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-150 pt-4">
+                        Offriamo contratti di licenza di tipo Enterprise (annuale o perpetua) basati sul numero di Tenant attivi o installazione flat su server fisici, con pacchetti di supporto per la prima installazione, ottimizzazione e manutenzione continuativa.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Polished CTA Contact Form -->
+    <section id="contact" class="py-24 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 relative overflow-hidden">
+        <!-- Glow effects -->
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-display font-extrabold text-gray-900 mb-4">Sei pronto ad avere il controllo totale dei tuoi dati?</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
+                Parla con un nostro ingegnere per strutturare il setup del chatbot sicuro all'interno della tua rete aziendale.
             </p>
-            <form action="https://api.web3forms.com/submit" method="POST" class="bg-white rounded-2xl p-8 shadow-2xl max-w-lg mx-auto text-left">
-                <!-- Inserisci qui la tua chiave Web3Forms -->
-                <input type="hidden" name="access_key" value="b66e94f1-1a35-490e-ac66-408ff73be2dd">
-                <input type="hidden" name="subject" value="Nuovo Contatto per Preventivo - PrivateChatbot">
-                <input type="hidden" name="from_name" value="Landing Page PrivateChatbot">
-                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            
+            <div class="premium-card rounded-2xl p-8 max-w-lg mx-auto text-left border border-gray-200 shadow-sm relative">
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
+                    <!-- Web3Forms Config - EXACT keys preserved for full out-of-the-box support -->
+                    <input type="hidden" name="access_key" value="b66e94f1-1a35-490e-ac66-408ff73be2dd">
+                    <input type="hidden" name="subject" value="Nuovo Contatto per Preventivo - PrivateChatbot">
+                    <input type="hidden" name="from_name" value="Landing Page PrivateChatbot">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Nome Azienda</label>
-                    <input type="text" name="company_name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Acme Corp">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Lavorativa</label>
-                    <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="nome@azienda.com">
-                </div>
-                <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Esigenze</label>
-                    <textarea name="message" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" rows="3" placeholder="Parlaci del tuo caso d'uso..."></textarea>
-                </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">Nome Azienda *</label>
+                        <input type="text" name="company_name" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-400 transition" placeholder="Es. Acme Corp">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">Email di Lavoro *</label>
+                        <input type="email" name="email" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-400 transition" placeholder="nome@azienda.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">Esigenze o Domande *</label>
+                        <textarea name="message" required rows="4" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-400 transition resize-none" placeholder="Descrivici brevemente il vostro caso d'uso..."></textarea>
+                    </div>
 
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
-                    Richiedi Preventivo
-                </button>
-            </form>
+                    <!-- GDPR Checkbox -->
+                    <div class="flex items-start space-x-3 pt-2">
+                        <input type="checkbox" required id="privacy-check" class="mt-1 h-4 w-4 rounded border-gray-300 bg-white text-blue-600 focus:ring-blue-500">
+                        <label for="privacy-check" class="text-[11px] text-gray-500 leading-normal cursor-pointer select-none">
+                            Consento al trattamento dei dati personali inseriti esclusivamente per finalità di contatto commerciale in conformità al GDPR.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transform hover:-translate-y-0.5">
+                        Invia Richiesta Preventivo
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 text-gray-400 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                <div class="w-6 h-6 rounded bg-gray-700 flex items-center justify-center text-white font-bold text-xs">AI</div>
-                <span class="font-medium text-white">PrivateChatbot</span>
+    <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-white font-display font-extrabold text-lg">P</div>
+                <span class="font-display font-bold text-white text-base">PrivateChatbot</span>
             </div>
-            <p class="text-sm">© 2026. Tutti i diritti riservati. Prodotto Enterprise-Grade.</p>
+            <p class="text-xs">© 2026. Tutti i diritti riservati. Soluzione Enterprise-Grade ad alta riservatezza.</p>
         </div>
     </footer>
 
+    <!-- Lead Magnet Modal -->
+    <div id="lead-modal-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm hidden transition-all duration-300">
+        <div class="premium-card max-w-md w-full mx-4 rounded-2xl border border-gray-200 p-8 shadow-xl relative reveal-fade-in text-left">
+            <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 font-bold text-lg select-none">✕</button>
+            
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-600 flex items-center justify-center font-bold text-xl mx-auto mb-3">📥</div>
+                <h3 class="text-xl font-display font-bold text-gray-900">Scarica la Guida CISO</h3>
+                <p class="text-xs text-gray-500 mt-1">Inserisci la tua email lavorativa per ricevere istantaneamente la checklist di sicurezza in formato PDF.</p>
+            </div>
+
+            <form action="https://api.web3forms.com/submit" method="POST" id="lead-magnet-form" onsubmit="handleLeadSubmit(event)" class="space-y-4">
+                <!-- Web3Forms Config - EXACT keys preserved for full out-of-the-box support -->
+                <input type="hidden" name="access_key" value="b66e94f1-1a35-490e-ac66-408ff73be2dd">
+                <input type="hidden" name="subject" value="Download Guida CISO - PrivateChatbot">
+                <input type="hidden" name="from_name" value="Landing Page CISO Lead Magnet">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Email di Lavoro *</label>
+                    <input type="email" name="email" required id="lead-email" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 text-xs placeholder-gray-400 transition" placeholder="nome@azienda.com">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">Ruolo Aziendale *</label>
+                    <select name="role" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 text-xs transition">
+                        <option value="CISO">CISO / Direttore Sicurezza</option>
+                        <option value="IT_Manager">IT Manager / CIO</option>
+                        <option value="Developer">Developer / DevOps</option>
+                        <option value="CEO_Founder">CEO / Owner</option>
+                        <option value="Other">Altro</option>
+                    </select>
+                </div>
+
+                <div class="flex items-start space-x-2.5 pt-1">
+                    <input type="checkbox" required id="lead-privacy" class="mt-0.5 h-3.5 w-3.5 rounded border-gray-300 bg-white text-blue-600 focus:ring-blue-500">
+                    <label for="lead-privacy" class="text-[10px] text-gray-500 leading-normal cursor-pointer select-none">
+                        Acconsento al trattamento dei dati personali per l'invio della guida tecnica in conformità al GDPR.
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-blue-500/20 hover:shadow-blue-500/35 transform hover:-translate-y-0.5 mt-2">
+                    Scarica la Guida in PDF
+                </button>
+            </form>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="lead-success-msg" class="hidden text-center py-6 space-y-3">
+                <div class="text-4xl">✅</div>
+                <h4 class="font-bold text-gray-900">Guida in arrivo!</h4>
+                <p class="text-xs text-gray-500">Abbiamo inviato il link di download della Checklist NIS2 direttamente alla tua email lavorativa.</p>
+                <button type="button" onclick="closeLeadModal()" class="mt-4 px-4 py-2 bg-gray-150 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-bold transition">Chiudi finestra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive JS Functions (Playground Tabs & ROI Calculator) -->
+    <script>
+        // API Tabs Switcher
+        function switchApiTab(tab) {
+            const reqBtn = document.getElementById('tab-btn-request');
+            const respBtn = document.getElementById('tab-btn-response');
+            const termBtn = document.getElementById('tab-btn-terminal');
+            
+            const reqTab = document.getElementById('api-tab-request');
+            const respTab = document.getElementById('api-tab-response');
+            const termTab = document.getElementById('api-tab-terminal');
+
+            reqBtn.classList.remove('active-tab');
+            respBtn.classList.remove('active-tab');
+            termBtn.classList.remove('active-tab');
+            
+            reqTab.classList.add('hidden');
+            respTab.classList.add('hidden');
+            termTab.classList.add('hidden');
+
+            if (tab === 'request') {
+                reqBtn.classList.add('active-tab');
+                reqTab.classList.remove('hidden');
+            } else if (tab === 'response') {
+                respBtn.classList.add('active-tab');
+                respTab.classList.remove('hidden');
+            } else {
+                termBtn.classList.add('active-tab');
+                termTab.classList.remove('hidden');
+            }
+        }
+
+        // Terminal Log simulation
+        const terminalLogs = [
+            "🤖 Pulling ollama/ollama:latest... OK",
+            "🗄️ Pulling postgres:16-alpine... OK",
+            "📊 Pulling chromadb/chroma:0.6.3... OK",
+            "📦 Starting chatbot-postgres ... OK (port 5433)",
+            "📦 Starting chatbot-chroma   ... OK (port 8100)",
+            "📦 Starting chatbot-ollama   ... OK (port 11434)",
+            "⚙️ Running DB schema migrations via Flyway...",
+            "⚙️ Migration V10__hash_api_keys.sql applied successfully.",
+            "🚀 Starting chatbot-api      ... OK (port 8000)",
+            "📈 Starting grafana & prometheus monitoring ... OK",
+            "✨ STATUS: All services are healthy and running locally!"
+        ];
+
+        function startTerminalSimulation() {
+            const btnContainer = document.getElementById('terminal-sim-button-container');
+            const output = document.getElementById('terminal-sim-output');
+            
+            btnContainer.classList.add('hidden');
+            output.classList.remove('hidden');
+            output.innerHTML = "";
+
+            let i = 0;
+            function printLog() {
+                if (i < terminalLogs.length) {
+                    const line = document.createElement('p');
+                    line.className = "reveal-fade-in";
+                    if (terminalLogs[i].includes("OK") || terminalLogs[i].includes("successfully") || terminalLogs[i].includes("healthy")) {
+                        line.innerHTML = terminalLogs[i]
+                            .replace("OK", "<span class='text-emerald-400 font-bold'>OK</span>")
+                            .replace("successfully", "<span class='text-emerald-400 font-bold'>successfully</span>")
+                            .replace("healthy", "<span class='text-emerald-400 font-bold'>healthy</span>");
+                    } else if (terminalLogs[i].includes("STATUS")) {
+                        line.innerHTML = `<span class='text-blue-400 font-bold'>${terminalLogs[i]}</span>`;
+                    } else {
+                        line.textContent = terminalLogs[i];
+                    }
+                    output.appendChild(line);
+                    output.scrollTop = output.scrollHeight;
+                    i++;
+                    setTimeout(printLog, 400);
+                }
+            }
+            printLog();
+        }
+
+        // Chat simulator content
+        const simulatedReplies = {
+            q1: {
+                text: "Garantiamo la sicurezza dei dati eseguendo tutto in locale. La nostra piattaforma non effettua alcuna chiamata API verso OpenAI, Anthropic o altri server cloud esterni. Tutti i file caricati rimangono cifrati nel database vettoriale locale (Chroma) all'interno del tuo server fisico aziendale o cloud privato.",
+                source: "SECURITY.md, Pag. 3"
+            },
+            q2: {
+                text: "PrivateChatbot supporta nativamente l'ingestion e l'estrazione semantica dei testi da un'ampia gamma di formati commerciali: documenti PDF (.pdf), Microsoft Word (.docx), fogli di calcolo Excel (.xlsx), tabelle CSV (.csv), file di testo semplice (.txt), file Markdown (.md) e pagine web statiche (.html).",
+                source: "WIDGET_INTEGRATION.md, Pag. 5"
+            },
+            q3: {
+                text: "Sì, l'integrazione è immediata. Forniamo un widget JavaScript pronto all'uso. Ti basterà copiare e incollare una singola riga di codice <script> all'interno del tuo sito aziendale o del portale clienti Keycloak/SSO. L'interfaccia si adatterà automaticamente ai tuoi colori istituzionali.",
+                source: "WIDGET_INTEGRATION.md, Pag. 1"
+            }
+        };
+
+        let isTyping = false;
+        function simulateChat(key) {
+            if (isTyping) return;
+            isTyping = true;
+
+            const chatBody = document.getElementById('chat-simulator-body');
+            const reply = simulatedReplies[key];
+
+            // Reset body to original welcome
+            const welcomeMsg = `<div class="bg-white text-gray-700 p-3 rounded-lg rounded-tl-none border border-gray-200/80 shadow-sm text-sm self-start max-w-[85%] mr-auto text-left">
+                                Ciao! Sono l'assistente virtuale di PrivateChatbot, addestrato sui documenti interni. Fai clic su una delle domande a sinistra per vedere come rispondo attingendo esclusivamente dalle fonti del tenant!
+                               </div>`;
+            chatBody.innerHTML = welcomeMsg;
+
+            // Fetch simulated user bubble
+            let userText = "";
+            if (key === 'q1') userText = "🛡️ Come garantite la sicurezza e la privacy?";
+            else if (key === 'q2') userText = "📂 Quali formati di file posso caricare?";
+            else userText = "💻 Posso integrarlo sul nostro sito web aziendale?";
+
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-blue-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm self-end max-w-[85%] mb-3 ml-auto text-left reveal-fade-in";
+            userBubble.textContent = userText;
+            chatBody.appendChild(userBubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Show Typing indicator
+            const typingBubble = document.createElement('div');
+            typingBubble.id = "chat-typing-bubble";
+            typingBubble.className = "bg-gray-100 text-gray-400 p-3 rounded-lg rounded-tl-none shadow-sm text-sm self-start max-w-[85%] mb-3 mr-auto text-left flex items-center space-x-1 reveal-fade-in";
+            typingBubble.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0ms"></span><span class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 150ms"></span><span class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 300ms"></span>`;
+            chatBody.appendChild(typingBubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Simulate typing delay
+            setTimeout(() => {
+                typingBubble.remove();
+
+                const botBubble = document.createElement('div');
+                botBubble.className = "bg-white text-gray-700 p-3 rounded-lg rounded-tl-none border border-gray-200/80 shadow-sm text-sm self-start max-w-[85%] mb-3 mr-auto text-left reveal-fade-in";
+                chatBody.appendChild(botBubble);
+
+                const text = reply.text;
+                let index = 0;
+                
+                function typeWord() {
+                    if (index < text.length) {
+                        botBubble.textContent = text.slice(0, index + 3);
+                        index += 3;
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                        setTimeout(typeWord, 12);
+                    } else {
+                        botBubble.textContent = text;
+                        const sourceBadge = document.createElement('div');
+                        sourceBadge.className = "mt-2 pt-2 border-t border-gray-100 text-[10px] text-blue-600 font-bold flex items-center space-x-1.5";
+                        sourceBadge.innerHTML = `<span>📂 Fonte:</span> <span class="bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100 text-blue-700">${reply.source}</span>`;
+                        botBubble.appendChild(sourceBadge);
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                        isTyping = false;
+                    }
+                }
+                typeWord();
+            }, 1000);
+        }
+
+        // RAG Visualizer simulation
+        function startChunkingSimulation() {
+            const btn1 = document.getElementById('btn-start-chunking');
+            const btn2 = document.getElementById('btn-start-embedding');
+            const badge1 = document.getElementById('chunk-count-badge');
+            const container = document.getElementById('chunk-output-container');
+
+            btn1.disabled = true;
+            btn1.classList.remove('bg-blue-600', 'hover:bg-blue-500', 'glow-button');
+            btn1.classList.add('bg-gray-100', 'text-gray-450', 'border', 'border-gray-200', 'cursor-not-allowed');
+
+            container.innerHTML = `<div class="flex justify-center items-center h-full w-full py-6"><div class="spinner"></div><span class="ml-2 text-gray-500">Spezzettamento in corso...</span></div>`;
+            container.classList.remove('text-center', 'justify-center', 'items-center');
+
+            setTimeout(() => {
+                badge1.classList.remove('hidden');
+                container.innerHTML = `
+                    <div class="p-2.5 bg-blue-50/50 border border-blue-100 rounded-lg mb-2.5 text-blue-700 text-left reveal-fade-in">
+                        <div class="font-bold text-[9px] uppercase tracking-wider mb-1 text-blue-600">Chunk #1 (Fornitura)</div>
+                        "ACME si impegna a consegnare 100 unità di materiale"
+                    </div>
+                    <div class="p-2.5 bg-indigo-50/50 border border-indigo-100 rounded-lg text-indigo-700 text-left reveal-fade-in">
+                        <div class="font-bold text-[9px] uppercase tracking-wider mb-1 text-indigo-600">Chunk #2 (Prezzo & Tempi)</div>
+                        "al prezzo di 500€ per unità, con consegna garantita entro 3 giorni lavorativi"
+                    </div>
+                `;
+                btn2.disabled = false;
+                btn2.classList.remove('bg-gray-100', 'text-gray-450', 'border', 'border-gray-200', 'cursor-not-allowed');
+                btn2.classList.add('bg-blue-600', 'hover:bg-blue-500', 'text-white', 'glow-button');
+            }, 1200);
+        }
+
+        function startEmbeddingSimulation() {
+            const btn2 = document.getElementById('btn-start-embedding');
+            const btn3 = document.getElementById('btn-db-ingested');
+            const badge2 = document.getElementById('db-status-badge');
+            const container = document.getElementById('vector-output-container');
+
+            btn2.disabled = true;
+            btn2.classList.remove('bg-blue-600', 'hover:bg-blue-500', 'glow-button');
+            btn2.classList.add('bg-gray-100', 'text-gray-450', 'border', 'border-gray-200', 'cursor-not-allowed');
+
+            container.innerHTML = `<div class="flex justify-center items-center h-full w-full py-6"><div class="spinner"></div><span class="ml-2 text-gray-500">Calcolo embeddings...</span></div>`;
+            container.classList.remove('text-center', 'justify-center', 'items-center');
+
+            setTimeout(() => {
+                badge2.classList.remove('hidden');
+                container.innerHTML = `
+                    <div class="p-2 bg-white border border-gray-200 rounded-lg mb-2 text-gray-600 text-left reveal-fade-in text-[10px]">
+                        <div class="font-bold text-[8px] uppercase tracking-wider mb-0.5 text-blue-600">Embedding Vector #1</div>
+                        [0.182, -0.912, 0.405, -0.312, 0.089, -0.551...]
+                    </div>
+                    <div class="p-2 bg-white border border-gray-200 rounded-lg text-gray-600 text-left reveal-fade-in text-[10px]">
+                        <div class="font-bold text-[8px] uppercase tracking-wider mb-0.5 text-indigo-600">Embedding Vector #2</div>
+                        [-0.245, 0.388, -0.119, 0.702, -0.054, 0.122...]
+                    </div>
+                `;
+                
+                btn3.classList.remove('bg-gray-100', 'text-gray-450', 'border-gray-200');
+                btn3.classList.add('bg-emerald-600', 'text-white', 'font-bold');
+                btn3.textContent = "✓ Ingestion in ChromaDB Completata!";
+            }, 1500);
+        }
+
+        // Lead Magnet Modal Functions
+        function openLeadModal() {
+            const overlay = document.getElementById('lead-modal-overlay');
+            overlay.classList.remove('hidden');
+        }
+        
+        function closeLeadModal() {
+            const overlay = document.getElementById('lead-modal-overlay');
+            overlay.classList.add('hidden');
+            // reset form state
+            document.getElementById('lead-magnet-form').classList.remove('hidden');
+            document.getElementById('lead-success-msg').classList.add('hidden');
+            document.getElementById('lead-email').value = "";
+        }
+
+        async function handleLeadSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('lead-magnet-form');
+            const success = document.getElementById('lead-success-msg');
+
+            // Submit using Web3Forms endpoint asynchronously
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            }).catch(err => console.log("Web3Forms log error: ", err));
+
+            // Visual success display & simulated PDF download
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+
+            // Decode the simple valid base64 PDF to binary and download
+            try {
+                const base64PDF = "JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAyIDAgUj4+CmVuZG9iagoyIDAgb2JqCjw8L1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgNTk1IDg0Ml0gL0NvbnRlbnRzIDQgMCBSIC9SZXNvdXJjZXMgPDwvRm9udCA8PC9GMSA1IDAgUj4+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggMTUzNT4+CnN0cmVhbQpCVAovRjEgMTQgVGYKNTAgNzgwIFRkCihDSEVDS0xJU1QgU0lDVVJFWlpBIEVOVEVSUFJJU0UgLSBQUklWQVRFQ0hBVEJPVCkgVGoKL0YxIDEwIFRmCjAgLTMwIFRkCigxLiBBUkNISVRFVFRVUkEgMTAwJSBPTi1QUkVNSVNFIEUgQUlSLUdBUFBFRCkgVGoKMCAtMTUgVGQKKCAgIC0gSXNvbGFtZW50byBkaSByZXRlIHRvdGFsZTogaWwgc2lzdGVtYSBwdW8nIG9wZXJhcmUgaW50ZXJhbWVudGUgc2VuemEgYWNjZXNzbyBhIEludGVybmV0LikgVGoKMCAtMTUgVGQKKCAgIC0gTmVzc3VuYSBjaGlhbWF0YSBBUEkgbyBkYXRvIHRyYXNtZXNzbyBhIHNlcnZlciBjbG91ZCBkaSB0ZXJ6ZSBwYXJ0aSBcKE9wZW5BSSwgQXp1cmUsIGVjYy5cKS4pIFRqCjAgLTE1IFRkCiggICAtIFBlc2kgZGVpIG1vZGVsbGkgbGluZ3Vpc3RpY2kgXChMTE1cKSBwcmUtY2FyaWNhdGkgbG9jYWxtZW50ZSBzdWxsJ2luZnJhc3RydXR0dXJhLikgVGoKMCAtMTUgVGQKMCAtMTIgVGQKKDIuIFNJQ1VSRVpaQSBERUwgREFUQUJBU0UgRSBDSUZSQVRVUkEgREVMTEUgQ0hJQVZJKSBUagowIC0xNSBUZAooICAgLSBNZW1vcml6emF6aW9uZSBzaWN1cmE6IGxlIGNoaWF2aSBBUEkgZGVpIHRlbmFudCBzb25vIHNhbHZhdGUgZXNjbHVzaXZhbWVudGUgY29tZSBoYXNoIFNIQS0yNTYuKSBUagowIC0xNSBUZAooICAgLSBOZXNzdW5hIGNoaWF2ZSBpbiBjaGlhcm8gbWVtb3JpenphdGE6IGltcG9zc2liaWxlIHJpc2FsaXJlIGFsbGEgY2hpYXZlIG9yaWdpbmFsZSBkYWwgREIuKSBUagowIC0xNSBUZAooICAgLSBJc29sYW1lbnRvIGxvZ2ljbyBlIG1hdGVtYXRpY28gZGVsbGUgY29sbGV6aW9uaSB2ZXR0b3JpYWxpIGRlbCBDaHJvbWEgVmVjdG9yIERCIHBlciBjaWFzY3VuIHRlbmFudC4pIFRqCjAgLTE1IFRkCjAgLTEyIFRkCigzLiBDT05GT1JNSVRBJyBMRUdBTEUgR0RQUiAmIE5JUzIpIFRqCjAgLTE1IFRkCiggICAtIFNjcmlwdCBhdXRvbWF0aWNvIGRpIGRhdGEgcmV0ZW50aW9uIHBlciBpbCBwdXJnaW5nIGRlaSBkYXRpIG9ic29sZXRpIG9sdHJlIGkgNjAgZ2lvcm5pLikgVGoKMCAtMTUgVGQKKCAgIC0gUmVnaXN0cm8gZGkgYXVkaXRpbmcgaW1tdXRhYmlsZSBwZXIgaWwgdHJhY2NpYW1lbnRvIGRpIHR1dHRlIGxlIG9wZXJhemlvbmkgYW1taW5pc3RyYXRpdmUuKSBUagowIC0xNSBUZAooICAgLSBIb3N0aW5nIGRlaSBkYXRpIGludGVyYW1lbnRlIGVudHJvIGlsIHBlcmltZXRybyBsZWdhbGUgZXVyb3BlbyBlIGF6aWVuZGFsZS4pIFRqCjAgLTE1IFRkCjAgLTEyIFRkCig0LiBQUk9URVpJT05FIERJIFJFVEUgRSBTSUNVUkVaWkEgREVMTEUgQVBJKSBUagowIC0xNSBUZAooICAgLSBQcm90ZXppb25lIGF0dGl2YSBjb250cm8gU2VydmVyLVNpZGUgUmVxdWVzdCBGb3JnZXJ5IFwoU1NSRlwpIHN1bGxlIGNoaWFtYXRlIGRlaSB3ZWJob29rLikgVGoKMCAtMTUgVGQKKCAgIC0gRmlybWUgY3JpdHRvZ3JhZmljaGUgSE1BQyBwZXIgZ2FyYW50aXJlIGwnYXV0ZW50aWNpdGAnIGRlbGxlIG5vdGlmaWNoZSBldmVudGkuKSBUagowIC0xNSBUZApFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2E+PgplbmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5IAowMDAwMCBuIAowMDAwMDAwMDU2IDAwMDAwIG4gCjAwMDAwMDAxMTEgMDAwMDAgbgowMDAwMDAwMjMxIDAwMDAwIG4gCjAwMDAwMDE4MTYgMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDYgL1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKMTg4NAolJUVPRgo=";
+                const binaryString = window.atob(base64PDF);
+                const len = binaryString.length;
+                const bytes = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                const blob = new Blob([bytes], { type: 'application/pdf' });
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'PrivateChatbot_IT_Security_Checklist.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (e) {
+                console.error("PDF generation failed, fallback to plain text:", e);
+                const link = document.createElement('a');
+                const blob = new Blob(["Checklist Sicurezza PrivateChatbot v2.0\n1. Installazione locale Docker: OK\n2. Crittografia in DB: OK\n3. Conformita' NIS2 & GDPR: 100% On-Premise."], { type: 'text/plain' });
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'PrivateChatbot_IT_Security_Checklist.txt';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        // Simulate live server node monitoring fluctuations
+        function runNodeDashboardFluctuations() {
+            setInterval(() => {
+                // GPU load fluctuation
+                const gpuLoad = Math.floor(Math.random() * (48 - 42 + 1)) + 42;
+                const loadEl = document.getElementById('stat-gpu-load');
+                const loadBar = document.getElementById('bar-gpu-load');
+                if (loadEl && loadBar) {
+                    loadEl.textContent = `${gpuLoad} %`;
+                    loadBar.style.width = `${gpuLoad}%`;
+                }
+
+                // GPU Temp fluctuation
+                const gpuTemp = Math.floor(Math.random() * (64 - 60 + 1)) + 60;
+                const tempEl = document.getElementById('stat-gpu-temp');
+                if (tempEl) tempEl.textContent = `${gpuTemp} °C`;
+
+                // Postgres connections fluctuation
+                const pgConn = Math.floor(Math.random() * (15 - 10 + 1)) + 10;
+                const pgEl = document.getElementById('stat-pg-connections');
+                const pgBar = document.getElementById('bar-pg-connections');
+                if (pgEl && pgBar) {
+                    pgEl.textContent = `${pgConn} / 100`;
+                    pgBar.style.width = `${pgConn}%`;
+                }
+
+                // Postgres CPU usage fluctuation
+                const pgCpu = (Math.random() * (3.5 - 1.8) + 1.8).toFixed(1);
+                const pgCpuEl = document.getElementById('stat-pg-cpu');
+                if (pgCpuEl) pgCpuEl.textContent = `${pgCpu} %`;
+            }, 3000);
+        }
+        window.addEventListener('DOMContentLoaded', runNodeDashboardFluctuations);
+
+        // ROI Calculator logic (Fixed document calculations bug)
+        function calculateSavings() {
+            const requests = parseInt(document.getElementById('input-requests').value);
+            const documents = parseInt(document.getElementById('input-documents').value);
+
+            // Display slider values
+            document.getElementById('val-requests').textContent = requests.toLocaleString('it-IT');
+            document.getElementById('val-documents').textContent = documents.toLocaleString('it-IT');
+
+            // Stima Cloud Cost:
+            // ~0.02 euro per query + 0.15 euro per document indexed monthly (realistic vector storage pricing on cloud like Azure AI Search / Pinecone)
+            const cloudCostPerQuery = 0.02; 
+            const cloudCostPerDocument = 0.15;
+            const cloudMonthlyCost = (requests * cloudCostPerQuery) + (documents * cloudCostPerDocument);
+            
+            // Stima On-Prem Cost flat (circa 50 euro di consumo elettrico/manutenzione flat per mese)
+            const localMonthlyCost = 50; 
+            
+            const monthlySavings = Math.max(0, cloudMonthlyCost - localMonthlyCost);
+            const annualSavings = monthlySavings * 12;
+
+            // Display Results
+            document.getElementById('display-cloud-cost').textContent = `€ ${Math.round(cloudMonthlyCost).toLocaleString('it-IT')} / mese`;
+            document.getElementById('display-annual-savings').textContent = `€ ${Math.round(annualSavings).toLocaleString('it-IT')}`;
+        }
+
+        // Ecosystem Integrations grid interactive logic
+        const integrationData = {
+            sharepoint: {
+                title: "📂 Connettore SharePoint Enterprise",
+                desc: "Sincronizza intere librerie di documenti di dipartimento tramite API locali sicure e proxy aziendali. Mantiene allineati i permessi di accesso ACL (Access Control List) in linea con Active Directory."
+            },
+            gdrive: {
+                title: "🤖 Connettore Google Drive Sicuro",
+                desc: "Consente l'indicizzazione unidirezionale programmata da Google Drive. Il connettore scarica i documenti tramite canale crittografato SSL direttamente sul server locale per la vettorializzazione on-premise."
+            },
+            confluence: {
+                title: "📄 Connettore Confluence Wiki",
+                desc: "Importa ed estrae conoscenza semantica da spazi wiki e pagine Confluence. Ideale per mantenere aggiornati i manuali tecnici del team di supporto interni al perimetro di sicurezza locale."
+            },
+            slack: {
+                title: "💬 Connettore Slack On-Premise",
+                desc: "Monitora canali specifici in tempo reale. I dati dei messaggi vengono convertiti localmente in embeddings senza mai inviare la cronologia delle chat aziendali al di fuori del firewall proprietario."
+            },
+            teams: {
+                title: "👥 Integrazione Microsoft Teams",
+                desc: "Fornisce risposte RAG istantanee all'interno dei canali o chat Teams configurando un bot locale federato. I dati della conversazione sono protetti dall'infrastruttura di rete locale aziendale."
+            },
+            samba: {
+                title: "🖥️ Connettore Samba / NFS Locale",
+                desc: "Il monitor nativo controlla le cartelle di rete aziendali condivise (NAS, SAN, Samba o NFS). Re-indicizza automaticamente i documenti Word/PDF non appena modificati o inseriti dagli utenti della rete locale."
+            }
+        };
+
+        function selectIntegration(type) {
+            const keys = ['sharepoint', 'gdrive', 'confluence', 'slack', 'teams', 'samba'];
+            keys.forEach(k => {
+                const btn = document.getElementById(`int-${k}`);
+                if (btn) {
+                    if (k === type) {
+                        btn.classList.add('active-tab');
+                    } else {
+                        btn.classList.remove('active-tab');
+                    }
+                }
+            });
+            const details = integrationData[type];
+            if (details) {
+                document.getElementById('integration-title').textContent = details.title;
+                document.getElementById('integration-desc').textContent = details.desc;
+            }
+        }
+
+        // Run calculation once on load
+        window.addEventListener('DOMContentLoaded', calculateSavings);
+    </script>
 </body>
 </html>
