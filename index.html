@@ -118,6 +118,13 @@
         details summary::-webkit-details-marker {
             display: none;
         }
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-700 font-sans antialiased selection:bg-blue-100">
@@ -260,17 +267,20 @@
     </section>    <!-- Trust / Compliance Bar -->
     <section class="py-10 bg-white border-y border-gray-200/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
                 <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Requisiti di Sicurezza Soddisfatti:</span>
-                <div class="flex flex-wrap justify-center gap-4 md:gap-8 items-center text-gray-500 font-semibold text-sm">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:flex lg:flex-wrap justify-center gap-3 sm:gap-4 lg:gap-8 items-center text-gray-500 font-semibold text-sm w-full lg:w-auto">
                     <!-- GDPR -->
-                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
-                        <span class="text-blue-500 text-lg">🛡️</span>
-                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">GDPR Compliant</span>
+                    <div class="relative group cursor-help flex items-center justify-center lg:justify-start space-x-2 py-2 px-3.5 rounded-xl hover:bg-gray-50 transition-colors border border-gray-100 lg:border-transparent lg:hover:border-gray-200/60 w-full lg:w-auto shadow-sm lg:shadow-none">
+                        <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span class="text-gray-650 group-hover:text-blue-600 transition-colors text-xs sm:text-sm">GDPR Compliant</span>
                         <!-- Tooltip -->
-                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
-                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
-                                <span>🛡️</span> <span>Conformità GDPR Nativa</span>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] max-w-[90vw] p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-650 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                <span>Conformità GDPR Nativa</span>
                             </div>
                             Tutti i dati personali e i documenti aziendali rimangono residenti nella tua infrastruttura legale in territorio UE. Nessun trasferimento di dati extra-UE o esposizione a terze parti cloud.
                             <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
@@ -278,13 +288,16 @@
                     </div>
 
                     <!-- NIS2 -->
-                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
-                        <span class="text-blue-500 text-lg">🚀</span>
-                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">NIS2 Ready</span>
+                    <div class="relative group cursor-help flex items-center justify-center lg:justify-start space-x-2 py-2 px-3.5 rounded-xl hover:bg-gray-50 transition-colors border border-gray-100 lg:border-transparent lg:hover:border-gray-200/60 w-full lg:w-auto shadow-sm lg:shadow-none">
+                        <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h2M21 13h-2M12 2C8 2 6 6 6 12c0 2.5 1 4.5 2 5.5h8c1-1 2-3 2-5.5 0-6-2-10-6-10z"></path>
+                        </svg>
+                        <span class="text-gray-650 group-hover:text-blue-600 transition-colors text-xs sm:text-sm">NIS2 Ready</span>
                         <!-- Tooltip -->
-                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
-                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
-                                <span>🚀</span> <span>Direttiva Europea NIS2</span>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] max-w-[90vw] p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-650 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h2M21 13h-2M12 2C8 2 6 6 6 12c0 2.5 1 4.5 2 5.5h8c1-1 2-3 2-5.5 0-6-2-10-6-10z"></path></svg>
+                                <span>Direttiva Europea NIS2</span>
                             </div>
                             Soddisfa i requisiti di sicurezza informatica dell'Articolo 21 tramite registri di auditing amministrativo immutabili, controllo degli accessi granulare e isolamento logico.
                             <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
@@ -292,13 +305,16 @@
                     </div>
 
                     <!-- ISO 27001 -->
-                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
-                        <span class="text-blue-500 text-lg">🔒</span>
-                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">ISO 27001 Align</span>
+                    <div class="relative group cursor-help flex items-center justify-center lg:justify-start space-x-2 py-2 px-3.5 rounded-xl hover:bg-gray-50 transition-colors border border-gray-100 lg:border-transparent lg:hover:border-gray-200/60 w-full lg:w-auto shadow-sm lg:shadow-none">
+                        <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                        <span class="text-gray-650 group-hover:text-blue-600 transition-colors text-xs sm:text-sm">ISO 27001 Align</span>
                         <!-- Tooltip -->
-                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
-                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
-                                <span>🔒</span> <span>Allineamento ISO 27001</span>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] max-w-[90vw] p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-650 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                <span>Allineamento ISO 27001</span>
                             </div>
                             Architettura solida basata sui principi di riservatezza e integrità: separazione logica multi-tenant, crittografia a riposo/in transito e hashing di sicurezza SHA-256 delle credenziali.
                             <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
@@ -306,13 +322,16 @@
                     </div>
 
                     <!-- Air-Gapped -->
-                    <div class="relative group cursor-help flex items-center space-x-2 py-1.5 px-3.5 rounded-lg hover:bg-gray-100 transition-colors border border-transparent hover:border-gray-200/60">
-                        <span class="text-blue-500 text-lg">🔌</span>
-                        <span class="text-gray-600 group-hover:text-blue-600 transition-colors">100% Air-Gapped</span>
+                    <div class="relative group cursor-help flex items-center justify-center lg:justify-start space-x-2 py-2 px-3.5 rounded-xl hover:bg-gray-50 transition-colors border border-gray-100 lg:border-transparent lg:hover:border-gray-200/60 w-full lg:w-auto shadow-sm lg:shadow-none">
+                        <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-gray-650 group-hover:text-blue-600 transition-colors text-xs sm:text-sm">100% Air-Gapped</span>
                         <!-- Tooltip -->
-                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-600 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
-                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-1.5">
-                                <span>🔌</span> <span>Isolamento Totale (Air-Gap)</span>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] max-w-[90vw] p-4 rounded-xl bg-white border border-gray-200 text-xs text-gray-650 font-normal leading-relaxed shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none z-50 text-left">
+                            <div class="font-bold text-gray-900 mb-1.5 flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Isolamento Totale (Air-Gap)</span>
                             </div>
                             Il sistema può operare interamente disconnesso dalla rete Internet. Sia i pesi dei modelli (LLM) sia il database vettoriale sono installati in locale sui tuoi server privati.
                             <div class="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-gray-200 rotate-45 -mt-1"></div>
@@ -399,33 +418,39 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
                 <div class="premium-card p-8 rounded-2xl">
-                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100 font-semibold text-lg">
-                        📑
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">RAG con Citazione Fonti</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    <p class="text-gray-650 text-sm leading-relaxed mb-4">
                         Il chatbot non inventa nulla. Cerca ed estrae frammenti pertinenti dai tuoi manuali o contratti e ti risponde citando file, pagina e paragrafo esatto come fonte.
                     </p>
                 </div>
 
                 <!-- Feature 2 -->
                 <div class="premium-card p-8 rounded-2xl">
-                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100 font-semibold text-lg">
-                        🏢
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Isolamento Multi-Tenant</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    <p class="text-gray-655 text-sm leading-relaxed mb-4">
                         Gestisci dipartimenti aziendali o clienti differenti in modo isolato. Ogni "Tenant" ha la propria base documentale protetta, prompt e limiti di richieste dedicati.
                     </p>
                 </div>
 
                 <!-- Feature 3 -->
                 <div class="premium-card p-8 rounded-2xl">
-                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100 font-semibold text-lg">
-                        🔄
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 border border-blue-100">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 7.89M9 11l3-3 3 3m-3-3v12"></path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Ingestion Folder Monitor</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    <p class="text-gray-655 text-sm leading-relaxed mb-4">
                         Il sistema monitora le cartelle condivise o l'archiviazione locale, re-indicizzando automaticamente i documenti non appena vengono inseriti o modificati dal tuo team.
                     </p>
                 </div>
@@ -457,34 +482,46 @@
                 
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                     <!-- SharePoint -->
-                    <button onclick="selectIntegration('sharepoint')" id="int-sharepoint" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group active-tab shadow-sm">
-                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">📂</span>
-                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">SharePoint</span>
+                    <button onclick="selectIntegration('sharepoint')" id="int-sharepoint" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group active-tab shadow-sm text-gray-500 hover:text-blue-600">
+                        <svg class="w-6 h-6 mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                        </svg>
+                        <span class="text-xs font-bold transition-colors">SharePoint</span>
                     </button>
                     <!-- Google Drive -->
-                    <button onclick="selectIntegration('gdrive')" id="int-gdrive" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
-                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">🤖</span>
-                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Google Drive</span>
+                    <button onclick="selectIntegration('gdrive')" id="int-gdrive" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm text-gray-500 hover:text-blue-600">
+                        <svg class="w-6 h-6 mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 22h20L12 2zm0 4l6.5 12H5.5L12 6z"></path>
+                        </svg>
+                        <span class="text-xs font-bold transition-colors">Google Drive</span>
                     </button>
                     <!-- Confluence -->
-                    <button onclick="selectIntegration('confluence')" id="int-confluence" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
-                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">📄</span>
-                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Confluence</span>
+                    <button onclick="selectIntegration('confluence')" id="int-confluence" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm text-gray-500 hover:text-blue-600">
+                        <svg class="w-6 h-6 mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span class="text-xs font-bold transition-colors">Confluence</span>
                     </button>
                     <!-- Slack -->
-                    <button onclick="selectIntegration('slack')" id="int-slack" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
-                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">💬</span>
-                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Slack</span>
+                    <button onclick="selectIntegration('slack')" id="int-slack" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm text-gray-500 hover:text-blue-600">
+                        <svg class="w-6 h-6 mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        <span class="text-xs font-bold transition-colors">Slack</span>
                     </button>
                     <!-- MS Teams -->
-                    <button onclick="selectIntegration('teams')" id="int-teams" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
-                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">👥</span>
-                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">MS Teams</span>
+                    <button onclick="selectIntegration('teams')" id="int-teams" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm text-gray-500 hover:text-blue-600">
+                        <svg class="w-6 h-6 mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span class="text-xs font-bold transition-colors">MS Teams</span>
                     </button>
                     <!-- Samba/NFS -->
-                    <button onclick="selectIntegration('samba')" id="int-samba" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm">
-                        <span class="text-2xl mb-2 group-hover:scale-110 transition-transform">🖥️</span>
-                        <span class="text-xs font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Samba / NFS</span>
+                    <button onclick="selectIntegration('samba')" id="int-samba" class="p-4 rounded-xl border border-gray-200 hover:border-blue-500 bg-white/40 text-center transition flex flex-col items-center justify-center group shadow-sm text-gray-500 hover:text-blue-600">
+                        <svg class="w-6 h-6 mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-xs font-bold transition-colors">Samba / NFS</span>
                     </button>
                 </div>
                 
@@ -559,9 +596,11 @@
                 <!-- Case 1 -->
                 <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
                     <div>
-                        <div class="text-3xl mb-4">👥</div>
+                        <svg class="w-8 h-8 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Risorse Umane & Onboarding</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        <p class="text-gray-655 text-sm leading-relaxed mb-6">
                             I dipendenti interrogano direttamente i regolamenti interni, le procedure di sicurezza e la policy aziendale per trovare risposte istantanee su ferie, permessi e tutele.
                         </p>
                     </div>
@@ -571,9 +610,11 @@
                 <!-- Case 2 -->
                 <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
                     <div>
-                        <div class="text-3xl mb-4">⚖️</div>
+                        <svg class="w-8 h-8 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7V2m0 2h12m0 0h3m-3 0l-3 9a5.002 5.002 0 006.001 0M18 4l3 9m-3-9V2m-6 20h2m-2-3h2m-2-3h2m-2 6v-6m-4-4h12"></path>
+                        </svg>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Ufficio Legale & Contratti</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        <p class="text-gray-655 text-sm leading-relaxed mb-6">
                             Analisi e ricerca semantica immediata su contratti commerciali, bandi di gara complessi e normative vigenti, con indicazione millimetrica della clausola di origine.
                         </p>
                     </div>
@@ -583,9 +624,12 @@
                 <!-- Case 3 -->
                 <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
                     <div>
-                        <div class="text-3xl mb-4">🛠️</div>
+                        <svg class="w-8 h-8 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Supporto Tecnico & Helpdesk</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        <p class="text-gray-655 text-sm leading-relaxed mb-6">
                             Fornisce assistenza tecnica automatica agli operatori o ai clienti finali addestrandosi sui manuali di manutenzione, senza rischio di diffondere file proprietari.
                         </p>
                     </div>
@@ -611,15 +655,30 @@
 
                     <div class="space-y-3">
                         <button onclick="simulateChat('q1')" class="w-full text-left px-5 py-4 premium-card rounded-xl text-sm font-bold text-gray-900 hover:text-blue-600 border border-gray-200 hover:border-blue-300 transition flex justify-between items-center group shadow-sm">
-                            <span>🛡️ Come garantite la sicurezza e la privacy?</span>
+                            <span class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                </svg>
+                                <span>Come garantite la sicurezza e la privacy?</span>
+                            </span>
                             <span class="text-blue-500 opacity-60 group-hover:opacity-100 transition-opacity">➔</span>
                         </button>
                         <button onclick="simulateChat('q2')" class="w-full text-left px-5 py-4 premium-card rounded-xl text-sm font-bold text-gray-900 hover:text-blue-600 border border-gray-200 hover:border-blue-300 transition flex justify-between items-center group shadow-sm">
-                            <span>📂 Quali formati di file posso caricare?</span>
+                            <span class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span>Quali formati di file posso caricare?</span>
+                            </span>
                             <span class="text-blue-500 opacity-60 group-hover:opacity-100 transition-opacity">➔</span>
                         </button>
                         <button onclick="simulateChat('q3')" class="w-full text-left px-5 py-4 premium-card rounded-xl text-sm font-bold text-gray-900 hover:text-blue-600 border border-gray-200 hover:border-blue-300 transition flex justify-between items-center group shadow-sm">
-                            <span>💻 Posso integrarlo sul nostro sito web aziendale?</span>
+                            <span class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                </svg>
+                                <span>Posso integrarlo sul nostro sito web aziendale?</span>
+                            </span>
                             <span class="text-blue-500 opacity-60 group-hover:opacity-100 transition-opacity">➔</span>
                         </button>
                     </div>
@@ -631,7 +690,20 @@
                         <!-- Chat Header -->
                         <div class="bg-blue-600 px-4 py-4 flex items-center justify-between shadow-md">
                             <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-xs shadow-md">AI</div>
+                                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center shadow-md relative overflow-hidden flex-shrink-0 border border-blue-400/30">
+                                    <svg class="w-6 h-6 text-white" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Robot Head -->
+                                        <rect x="15" y="22" width="34" height="28" rx="6" fill="white" fill-opacity="0.15" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+                                        <!-- Eyes -->
+                                        <circle cx="26" cy="34" r="3" fill="#38bdf8" class="animate-pulse"/>
+                                        <circle cx="38" cy="34" r="3" fill="#38bdf8" class="animate-pulse"/>
+                                        <!-- Antenna -->
+                                        <path d="M32 22V13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                        <circle cx="32" cy="10" r="2.5" fill="#38bdf8" class="animate-pulse"/>
+                                        <!-- Mouth -->
+                                        <path d="M27 42H37" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
                                 <div class="ml-3 text-left">
                                     <div class="text-white font-bold text-xs leading-none">Assistente Aziendale</div>
                                     <div class="text-[9px] text-blue-100 mt-1 flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse"></span> 100% On-Premise</div>
@@ -740,21 +812,34 @@
 
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-8 h-8 rounded bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold">⚙️</div>
+                            <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-blue-650" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-gray-900 text-sm">Modelli LLM Supportati</h4>
                                 <p class="text-xs text-gray-600 mt-1">Llama 3 (8B/70B), Mistral (7B), Gemma 2, Phi-3 e qualsiasi modello GGUF supportato da Ollama.</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-8 h-8 rounded bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold">🔌</div>
+                            <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-blue-650" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 5h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"></path>
+                                </svg>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-gray-900 text-sm">Requisiti Hardware</h4>
                                 <p class="text-xs text-gray-600 mt-1">Esecuzione fluida su CPU standard (min. 16GB RAM) o accelerata tramite GPU Nvidia CUDA (Consigliato RTX 3090/4090 o A100).</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-8 h-8 rounded bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center font-bold">📦</div>
+                            <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-blue-650" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-14v10m0 0l-8-4m8 4l-8-4m0 0v-10"></path>
+                                </svg>
+                            </div>
                             <div>
                                 <h4 class="font-bold text-gray-900 text-sm">Deployment Flessibile</h4>
                                 <p class="text-xs text-gray-600 mt-1">Distribuzione rapida tramite Docker Compose pre-configurato o Kubernetes Helm Charts dedicati.</p>
@@ -765,13 +850,13 @@
 
                 <!-- API Playground Mockup -->
                 <div class="rounded-2xl border border-slate-800 bg-[#0d1117] p-6 shadow-2xl overflow-hidden font-mono text-xs">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-                        <div class="flex space-x-2">
-                            <button id="tab-btn-request" onclick="switchApiTab('request')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent transition active-tab">Richiesta (cURL)</button>
-                            <button id="tab-btn-response" onclick="switchApiTab('response')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent text-slate-400 hover:text-white transition">Risposta (JSON)</button>
-                            <button id="tab-btn-terminal" onclick="switchApiTab('terminal')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent text-slate-400 hover:text-white transition">docker-compose</button>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 mb-4 gap-3">
+                        <div class="flex space-x-2 overflow-x-auto whitespace-nowrap scrollbar-none pb-1 sm:pb-0">
+                            <button id="tab-btn-request" onclick="switchApiTab('request')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent transition active-tab flex-shrink-0">Richiesta (cURL)</button>
+                            <button id="tab-btn-response" onclick="switchApiTab('response')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent text-slate-400 hover:text-white transition flex-shrink-0">Risposta (JSON)</button>
+                            <button id="tab-btn-terminal" onclick="switchApiTab('terminal')" class="px-3 py-1.5 rounded-lg font-bold border border-transparent text-slate-400 hover:text-white transition flex-shrink-0">docker-compose</button>
                         </div>
-                        <span class="text-[10px] text-blue-400 bg-blue-950/80 px-2 py-0.5 rounded border border-blue-900/60 font-bold uppercase">POST API</span>
+                        <span class="text-[10px] text-blue-400 bg-blue-950/80 px-2 py-0.5 rounded border border-blue-900/60 font-bold uppercase self-start sm:self-auto flex-shrink-0">POST API</span>
                     </div>
 
                     <!-- Request Tab Content -->
@@ -925,7 +1010,8 @@
                 </p>
             </div>
 
-            <div class="premium-card rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+            <!-- Desktop Comparison Table -->
+            <div class="premium-card rounded-2xl border border-gray-200 overflow-hidden shadow-sm hidden md:block">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
                         <thead class="bg-gray-50 text-gray-900 font-bold border-b border-gray-200">
@@ -963,6 +1049,104 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Mobile Comparison Cards (Shown only on small screens) -->
+            <div class="grid grid-cols-1 gap-6 md:hidden">
+                <!-- Card 1: Residenza e Proprietà dei Dati -->
+                <div class="premium-card p-5 rounded-2xl border border-gray-200 space-y-4">
+                    <div class="text-gray-900 font-bold text-base border-b border-gray-100 pb-2 text-left">Residenza e Proprietà dei Dati</div>
+                    <div class="space-y-3">
+                        <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3 text-emerald-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-emerald-600 mb-1">PrivateChatbot (On-Premise)</span>
+                            <span class="text-xs sm:text-sm font-semibold flex items-start gap-1.5">
+                                <span class="text-emerald-600 flex-shrink-0">✓</span> 100% Locale (sui tuoi server o cloud privato)
+                            </span>
+                        </div>
+                        <div class="bg-red-50/50 border border-red-100 rounded-xl p-3 text-red-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-red-500 mb-1">Cloud AI (OpenAI / Azure)</span>
+                            <span class="text-xs sm:text-sm font-medium flex items-start gap-1.5">
+                                <span class="text-red-500 flex-shrink-0">✗</span> Elaborati e trasmessi a data center esterni (spesso USA)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Funzionamento Offline -->
+                <div class="premium-card p-5 rounded-2xl border border-gray-200 space-y-4">
+                    <div class="text-gray-900 font-bold text-base border-b border-gray-100 pb-2 text-left">Funzionamento Offline (Air-Gap)</div>
+                    <div class="space-y-3">
+                        <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3 text-emerald-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-emerald-600 mb-1">PrivateChatbot (On-Premise)</span>
+                            <span class="text-xs sm:text-sm font-semibold flex items-start gap-1.5">
+                                <span class="text-emerald-600 flex-shrink-0">✓</span> Disponibile (Isolamento totale da Internet)
+                            </span>
+                        </div>
+                        <div class="bg-red-50/50 border border-red-100 rounded-xl p-3 text-red-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-red-500 mb-1">Cloud AI (OpenAI / Azure)</span>
+                            <span class="text-xs sm:text-sm font-medium flex items-start gap-1.5">
+                                <span class="text-red-500 flex-shrink-0">✗</span> Impossibile (Connessione H24 obbligatoria)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Struttura dei Costi -->
+                <div class="premium-card p-5 rounded-2xl border border-gray-200 space-y-4">
+                    <div class="text-gray-900 font-bold text-base border-b border-gray-100 pb-2 text-left">Struttura dei Costi</div>
+                    <div class="space-y-3">
+                        <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3 text-emerald-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-emerald-600 mb-1">PrivateChatbot (On-Premise)</span>
+                            <span class="text-xs sm:text-sm font-semibold flex items-start gap-1.5">
+                                <span class="text-emerald-600 flex-shrink-0">✓</span> Flat (Canone fisso, zero costi per token)
+                            </span>
+                        </div>
+                        <div class="bg-red-50/50 border border-red-100 rounded-xl p-3 text-red-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-red-500 mb-1">Cloud AI (OpenAI / Azure)</span>
+                            <span class="text-xs sm:text-sm font-medium flex items-start gap-1.5">
+                                <span class="text-red-500 flex-shrink-0">✗</span> Variabile (Costo per ogni singolo token e query)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Conformità Legale -->
+                <div class="premium-card p-5 rounded-2xl border border-gray-200 space-y-4">
+                    <div class="text-gray-900 font-bold text-base border-b border-gray-100 pb-2 text-left">Conformità Legale (GDPR/NIS2)</div>
+                    <div class="space-y-3">
+                        <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3 text-emerald-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-emerald-600 mb-1">PrivateChatbot (On-Premise)</span>
+                            <span class="text-xs sm:text-sm font-semibold flex items-start gap-1.5">
+                                <span class="text-emerald-600 flex-shrink-0">✓</span> Nativa ed immediata (Nessun trasferimento dati)
+                            </span>
+                        </div>
+                        <div class="bg-red-50/50 border border-red-100 rounded-xl p-3 text-red-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-red-500 mb-1">Cloud AI (OpenAI / Azure)</span>
+                            <span class="text-xs sm:text-sm font-medium flex items-start gap-1.5">
+                                <span class="text-red-500 flex-shrink-0">✗</span> Complessa (Richiede complesse DPA e valutazioni)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Controllo del Modello -->
+                <div class="premium-card p-5 rounded-2xl border border-gray-200 space-y-4">
+                    <div class="text-gray-900 font-bold text-base border-b border-gray-100 pb-2 text-left">Controllo del Modello & Peso LLM</div>
+                    <div class="space-y-3">
+                        <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3 text-emerald-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-emerald-600 mb-1">PrivateChatbot (On-Premise)</span>
+                            <span class="text-xs sm:text-sm font-semibold flex items-start gap-1.5">
+                                <span class="text-emerald-600 flex-shrink-0">✓</span> Totale (Scegli, alleni e gestisci tu il modello desiderato)
+                            </span>
+                        </div>
+                        <div class="bg-red-50/50 border border-red-100 rounded-xl p-3 text-red-800 text-left">
+                            <span class="font-bold text-[10px] uppercase tracking-wider block text-red-500 mb-1">Cloud AI (OpenAI / Azure)</span>
+                            <span class="text-xs sm:text-sm font-medium flex items-start gap-1.5">
+                                <span class="text-red-500 flex-shrink-0">✗</span> Nessuno (Dipendente da variazioni e deprecazioni)
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1066,7 +1250,10 @@
                 </div>
                 <div class="relative z-10 flex-shrink-0">
                     <button onclick="openLeadModal()" class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full text-sm sm:text-base transition shadow-lg shadow-blue-500/25 hover:shadow-blue-500/35 transform hover:-translate-y-0.5 glow-button flex items-center space-x-2">
-                        <span>📥 Scarica Guida PDF</span>
+                        <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        <span>Scarica Guida PDF</span>
                     </button>
                 </div>
             </div>
@@ -1295,7 +1482,11 @@
 
                 <!-- Success Message (hidden by default) -->
                 <div id="contact-success-msg" class="hidden text-center py-8 space-y-4 reveal-fade-in">
-                    <div class="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto text-3xl">✅</div>
+                    <div class="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto text-emerald-650">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
                     <h4 class="font-display font-bold text-xl text-gray-900">Messaggio ricevuto!</h4>
                     <p class="text-sm text-gray-500 leading-relaxed">Grazie per averci contattato. Ti risponderemo entro 24 ore lavorative all'indirizzo email che hai indicato.</p>
                     <div class="pt-2 text-xs text-gray-400">Nel frattempo puoi esplorare le <a href="#faq" class="text-blue-600 font-semibold hover:underline">FAQ</a> o scaricare la <button onclick="openLeadModal()" class="text-blue-600 font-semibold hover:underline">Guida Tecnica CISO</button>.</div>
@@ -1347,12 +1538,18 @@
                     <ul class="space-y-3 text-sm">
                         <li>
                             <a href="#contact" class="hover:text-white transition-colors flex items-center gap-2">
-                                <span class="text-blue-500">✉</span> Richiedi un Preventivo
+                                <svg class="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Richiedi un Preventivo</span>
                             </a>
                         </li>
                         <li>
                             <button onclick="openLeadModal()" class="hover:text-white transition-colors flex items-center gap-2 text-left">
-                                <span class="text-blue-500">📥</span> Scarica Guida CISO
+                                <svg class="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                <span>Scarica Guida CISO</span>
                             </button>
                         </li>
                         <li class="pt-3 border-t border-slate-800">
@@ -1385,7 +1582,11 @@
             <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 font-bold text-lg select-none">✕</button>
             
             <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-600 flex items-center justify-center font-bold text-xl mx-auto mb-3">📥</div>
+                <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-600 flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                </div>
                 <h3 class="text-xl font-display font-bold text-gray-900">Scarica la Guida CISO</h3>
                 <p class="text-xs text-gray-500 mt-1">Inserisci la tua email lavorativa per ricevere istantaneamente la checklist di sicurezza in formato PDF.</p>
             </div>
@@ -1426,7 +1627,11 @@
             
             <!-- Success Message (hidden by default) -->
             <div id="lead-success-msg" class="hidden text-center py-6 space-y-3">
-                <div class="text-4xl">✅</div>
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto text-emerald-650">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
                 <h4 class="font-bold text-gray-900">Guida in arrivo!</h4>
                 <p class="text-xs text-gray-500">Abbiamo inviato il link di download della Checklist NIS2 direttamente alla tua email lavorativa.</p>
                 <button type="button" onclick="closeLeadModal()" class="mt-4 px-4 py-2 bg-gray-150 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-bold transition">Chiudi finestra</button>
@@ -1545,9 +1750,9 @@
 
             // Fetch simulated user bubble
             let userText = "";
-            if (key === 'q1') userText = "🛡️ Come garantite la sicurezza e la privacy?";
-            else if (key === 'q2') userText = "📂 Quali formati di file posso caricare?";
-            else userText = "💻 Posso integrarlo sul nostro sito web aziendale?";
+            if (key === 'q1') userText = "Come garantite la sicurezza e la privacy?";
+            else if (key === 'q2') userText = "Quali formati di file posso caricare?";
+            else userText = "Posso integrarlo sul nostro sito web aziendale?";
 
             const userBubble = document.createElement('div');
             userBubble.className = "bg-blue-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm self-end max-w-[85%] mb-3 ml-auto text-left reveal-fade-in";
