@@ -5,7 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrivateChatbot | Intelligenza Artificiale On-Premise Sicura ed Enterprise</title>
     <meta name="description" content="La piattaforma AI privata B2B per addestrare chatbot sui tuoi documenti aziendali riservati senza inviare dati al cloud. Conforme a GDPR e NIS2.">
-    
+
+    <!-- Open Graph / LinkedIn / Twitter Cards -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chatbot-landing.koyeb.app/">
+    <meta property="og:title" content="PrivateChatbot | AI On-Premise Sicura ed Enterprise">
+    <meta property="og:description" content="Addestra modelli AI sui tuoi documenti aziendali riservati senza inviare un byte al cloud. 100% On-Premise, GDPR e NIS2 compliant.">
+    <meta property="og:image" content="https://chatbot-landing.koyeb.app/dashboard-real.png">
+    <meta property="og:locale" content="it_IT">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PrivateChatbot | AI On-Premise Sicura ed Enterprise">
+    <meta name="twitter:description" content="Addestra modelli AI sui tuoi documenti aziendali riservati senza inviare un byte al cloud. GDPR e NIS2 compliant.">
+    <meta name="twitter:image" content="https://chatbot-landing.koyeb.app/dashboard-real.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><text y='24' x='5' font-size='22' font-family='Arial' font-weight='bold' fill='white'>P</text></svg>">
+
     <!-- Tailwind CSS & Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -93,6 +108,7 @@
                         <span class="text-[9px] uppercase tracking-widest text-blue-600 font-bold mt-1">Enterprise AI</span>
                     </div>
                 </div>
+                <!-- Desktop menu -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#architecture" class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors">Architettura</a>
                     <a href="#features" class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors">Funzionalità</a>
@@ -103,6 +119,25 @@
                         Richiedi Demo
                     </a>
                 </div>
+                <!-- Mobile hamburger button -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-gray-100 transition-colors" aria-label="Apri menu">
+                    <span id="ham-line-1" class="block w-5 h-0.5 bg-gray-700 transition-all duration-300"></span>
+                    <span id="ham-line-2" class="block w-5 h-0.5 bg-gray-700 mt-1.5 transition-all duration-300"></span>
+                    <span id="ham-line-3" class="block w-5 h-0.5 bg-gray-700 mt-1.5 transition-all duration-300"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu overlay -->
+        <div id="mobile-menu" class="hidden md:hidden glass-navbar border-t border-gray-200/60">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col space-y-1">
+                <a href="#architecture" onclick="closeMobileMenu()" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium text-sm px-4 py-3 rounded-xl transition-colors">Architettura</a>
+                <a href="#features" onclick="closeMobileMenu()" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium text-sm px-4 py-3 rounded-xl transition-colors">Funzionalità</a>
+                <a href="#specs" onclick="closeMobileMenu()" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium text-sm px-4 py-3 rounded-xl transition-colors">Specifiche</a>
+                <a href="#calculator" onclick="closeMobileMenu()" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium text-sm px-4 py-3 rounded-xl transition-colors">Calcola ROI</a>
+                <a href="#faq" onclick="closeMobileMenu()" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium text-sm px-4 py-3 rounded-xl transition-colors">FAQ</a>
+                <a href="#contact" onclick="closeMobileMenu()" class="w-full mt-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all text-center">
+                    Richiedi Demo
+                </a>
             </div>
         </div>
     </nav>
@@ -976,7 +1011,7 @@
                     <span class="text-xs font-bold text-blue-700 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">IT Resources</span>
                     <h3 class="text-2xl sm:text-3xl font-display font-bold text-gray-900 mt-4 mb-3">Sei un CISO o IT Manager?</h3>
                     <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                        Scarica la nostra **Guida Tecnica di Sicurezza & Checklist NIS2 / GDPR** per scoprire i dettagli su crittografia locale, ritenzione dati e configurazione delle reti isolate (Air-Gapped).
+                        Scarica la nostra <strong class="text-gray-900">Guida Tecnica di Sicurezza &amp; Checklist NIS2 / GDPR</strong> per scoprire i dettagli su crittografia locale, ritenzione dati e configurazione delle reti isolate (Air-Gapped).
                     </p>
                 </div>
                 <div class="relative z-10 flex-shrink-0">
@@ -1668,6 +1703,38 @@
 
         // Run calculation once on load
         window.addEventListener('DOMContentLoaded', calculateSavings);
+
+        // Mobile hamburger menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const l1 = document.getElementById('ham-line-1');
+            const l2 = document.getElementById('ham-line-2');
+            const l3 = document.getElementById('ham-line-3');
+            const isOpen = !menu.classList.contains('hidden');
+            if (isOpen) {
+                menu.classList.add('hidden');
+                l1.style.transform = '';
+                l2.style.opacity = '1';
+                l3.style.transform = '';
+            } else {
+                menu.classList.remove('hidden');
+                // Animate to X
+                l1.style.transform = 'translateY(8px) rotate(45deg)';
+                l2.style.opacity = '0';
+                l3.style.transform = 'translateY(-8px) rotate(-45deg)';
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const l1 = document.getElementById('ham-line-1');
+            const l2 = document.getElementById('ham-line-2');
+            const l3 = document.getElementById('ham-line-3');
+            menu.classList.add('hidden');
+            l1.style.transform = '';
+            l2.style.opacity = '1';
+            l3.style.transform = '';
+        }
     </script>
 </body>
 </html>
